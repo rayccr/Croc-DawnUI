@@ -39,6 +39,8 @@ QVariant TransferTaskModel::data(const QModelIndex& _stIndex, int _nRole) const 
     case ROLE_NAME:
         return stSnapshot.strDisplayName;
     case ROLE_STAGE_TEXT:
+        if (stSnapshot.enStage == ETaskStage::STAGE_WAITING_PEER && stSnapshot.enDirection == ETaskDirection::DIRECTION_RECEIVE)
+        { return QStringLiteral("正在连接发送方"); }
         if (stSnapshot.m_bAggregateProgress && stSnapshot.enStage == ETaskStage::STAGE_WAITING_PEER && stSnapshot.enDirection == ETaskDirection::DIRECTION_SEND)
         { return stSnapshot.bShareReady ? QStringLiteral("已就绪，等待接收") : QStringLiteral("连接中，口令未就绪"); }
         return StageText(stSnapshot.enStage);

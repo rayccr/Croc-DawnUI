@@ -206,6 +206,7 @@ Controls.ApplicationWindow {
             }
 
             HomePage {
+                id: homePage
                 visible: window.currentPage === "home"
                 Layout.fillWidth: true
                 narrow: window.narrow
@@ -228,8 +229,8 @@ Controls.ApplicationWindow {
                 Layout.fillWidth: true
                 narrow: window.narrow
                 onTaskStarted: function(taskId) {
+                    homePage.selectedTaskId = taskId;
                     window.navigate("home");
-                    window.notify(I18n.t("接收任务已启动，等待对方在线"));
                 }
             }
 

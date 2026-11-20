@@ -9,12 +9,24 @@ ColumnLayout {
     property string savePath: ""
     property bool narrow: false
     property bool useDefaultPath: true
+    readonly property string enteredCode: codeField.text.trim()
+    readonly property bool canStart: enteredCode.length >= 6 && savePath !== "" && AppController.engineAvailable
     Connections {
         target: AppController
         function onSettingsChanged() { if (receivePage.useDefaultPath) { receivePage.savePath = AppController.defaultSaveDir; } }
     }
 
     signal taskStarted(string taskId)
+
+    function startReceive() {
+        if (!canStart) {
+            return;
+        }
+        var strTaskId = AppController.startReceive(enteredCode, savePath);
+        if (strTaskId !== "") {
+            taskStarted(strTaskId);
+        }
+    }
 
     // 首次进入时用设置里的默认保存目录，用户仍可自行选择
     Component.onCompleted: {
@@ -43,10 +55,11 @@ ColumnLayout {
             id: codeField
             Layout.fillWidth: true
             placeholderText: I18n.t("例如 7-word-phrase")
+            onAccepted: receivePage.startReceive()
         }
 
         Hint {
-            text: I18n.t("输入发送方分享的口令，双方需要保持在线。")
+            text: I18n.t("请使用发送方分享的当前口令。")
             Layout.fillWidth: true
         }
 
@@ -80,18 +93,22 @@ ColumnLayout {
                 text: I18n.t("开始接收")
                 tint: Theme.green
                 labelColor: Theme.onAccent
-                enabled: codeField.text.trim().length >= 6 && receivePage.savePath !== ""
-                             && AppController.engineAvailable
-                onClicked: {
-                    var strTaskId = AppController.startReceive(codeField.text.trim(), receivePage.savePath);
-                    if (strTaskId !== "") {
-                        receivePage.taskStarted(strTaskId);
-                    }
-                }
+                enabled: receivePage.canStart
+                onClicked: receivePage.startReceive()
             }
             Hint {
-                text: receivePage.savePath === "" ? I18n.t("请先选择保存位置")
-                     : (codeField.text.trim().length < 6 ? I18n.t("口令至少 6 个字符") : I18n.t("对方在线时才可能开始传输"))
+                text: {
+                    if (!AppController.engineAvailable) {
+                        return I18n.t("接收引擎不可用，请检查安装后重启。");
+                    }
+                    if (receivePage.savePath === "") {
+                        return I18n.t("请先选择保存位置");
+                    }
+                    if (receivePage.enteredCode.length < 6) {
+                        return I18n.t("口令至少 6 个字符");
+                    }
+                    return I18n.t("点击开始接收，或按回车。");
+                }
                 Layout.fillWidth: true
             }
         }
