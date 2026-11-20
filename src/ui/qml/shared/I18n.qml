@@ -135,6 +135,7 @@ QtObject {
         '让文件传输更简单': 'File transfer, simplified',
         '任务进行中': 'Task in progress',
         '任务详情': 'Task details',
+        '查看完整错误': 'View full error',
         '任务已结束，重新发送将生成新口令': 'Task finished; sending again creates a new code',
         '仍有活动任务': 'Active tasks remain',
         '上传限速（MB/s，0 为不限速）': 'Upload limit (MB/s, 0 = unlimited)',

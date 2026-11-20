@@ -5,6 +5,7 @@ import QtQuick.Layouts
 GlassSurface {
     id: panel
     property int padding: 22
+    property alias spacing: panelBody.spacing
     default property alias contents: panelBody.data
     implicitHeight: panelBody.implicitHeight + padding * 2
     glassTint: Theme.panel

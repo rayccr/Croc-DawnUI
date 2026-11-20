@@ -112,8 +112,21 @@ Controls.ApplicationWindow {
             Item { Layout.fillWidth: true }
 
             Hint {
+                id: engineStatusLabel
                 visible: window.width > 700
                 text: AppController.engineStatus
+                wrapMode: Text.NoWrap
+                maximumLineCount: 1
+                elide: Text.ElideRight
+                Layout.maximumWidth: 320
+
+                HoverHandler { id: engineStatusHover }
+                Controls.ToolTip {
+                    visible: engineStatusLabel.truncated && engineStatusHover.hovered
+                    text: engineStatusLabel.text
+                    width: Math.min(implicitWidth, window.width - 32, 480)
+                    delay: 400
+                }
             }
 
             AppButton {
@@ -329,6 +342,7 @@ Controls.ApplicationWindow {
         padding: 20
         modal: true
         closePolicy: Controls.Popup.CloseOnEscape | Controls.Popup.CloseOnPressOutside
+        onOpened: messageScroll.contentY = 0
 
         background: GlassSurface {
             glassTint: Theme.hover
@@ -339,9 +353,20 @@ Controls.ApplicationWindow {
 
         contentItem: ColumnLayout {
             spacing: 16
-            BodyText {
-                id: messageText
+            Flickable {
+                id: messageScroll
                 Layout.fillWidth: true
+                Layout.preferredHeight: Math.min(contentHeight, window.height - 132)
+                contentWidth: width
+                contentHeight: messageText.height
+                boundsBehavior: Flickable.StopAtBounds
+                clip: true
+                Controls.ScrollBar.vertical: Controls.ScrollBar { policy: Controls.ScrollBar.AsNeeded }
+
+                BodyText {
+                    id: messageText
+                    width: messageScroll.width - 12
+                }
             }
             AppButton {
                 text: I18n.t("知道了")

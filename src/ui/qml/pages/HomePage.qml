@@ -111,7 +111,8 @@ ColumnLayout {
 
     Panel {
         Layout.fillWidth: true
-        padding: 20
+        padding: 16
+        spacing: 10
 
         RowLayout {
             Layout.fillWidth: true
@@ -135,13 +136,21 @@ ColumnLayout {
             }
         }
 
-        GridLayout {
+        Hint {
+            visible: !home.hasTask
+            text: I18n.t("选择任务后查看详细信息")
             Layout.fillWidth: true
-            columns: home.narrow ? 1 : 2
-            columnSpacing: 24
-            rowSpacing: 16
+        }
+
+        GridLayout {
+            visible: home.hasTask
+            Layout.fillWidth: true
+            columns: 2
+            columnSpacing: home.narrow ? 12 : 24
+            rowSpacing: home.narrow ? 12 : 16
 
             ProgressRing {
+                Layout.rowSpan: home.narrow ? 1 : 2
                 Layout.preferredWidth: 104
                 Layout.preferredHeight: 104
                 Layout.alignment: Qt.AlignCenter
@@ -150,83 +159,94 @@ ColumnLayout {
                 caption: home.hasTask && home.realTask.verifying ? I18n.t("校验进度") : (home.hasTask && home.realTask.aggregateProgress ? I18n.t("整批传输进度") : I18n.t("当前文件进度"))
             }
 
-            ColumnLayout {
+            RowLayout {
+                Layout.row: 0
+                Layout.column: 1
+                spacing: 12
                 Layout.fillWidth: true
-                spacing: 20
-
-                RowLayout {
-                    spacing: 12
-                    Layout.fillWidth: true
-                    Rectangle {
-                        width: 42
-                        height: 42
-                        radius: Theme.radiusControl
-                        color: Theme.sendSurface
-                        UiIcon {
-                            anchors.centerIn: parent
-                            symbol: "file"
-                            tone: "send"
-                        }
-                    }
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        spacing: 4
-                        BodyText {
-                            text: home.hasTask ? home.taskName : I18n.t("选择任务后查看详细信息")
-                            font.pixelSize: 16
-                            font.weight: Font.DemiBold
-                            Layout.fillWidth: true
-                            elide: Text.ElideRight
-                            wrapMode: Text.NoWrap
-                        }
-                        Hint {
-                            text: home.hasTask ? I18n.t("真实任务") : I18n.t("尚未开始传输")
-                        }
+                Rectangle {
+                    width: 42
+                    height: 42
+                    radius: Theme.radiusControl
+                    color: Theme.sendSurface
+                    UiIcon {
+                        anchors.centerIn: parent
+                        symbol: "file"
+                        tone: "send"
                     }
                 }
-
-                GridLayout {
+                ColumnLayout {
                     Layout.fillWidth: true
-                    columns: 2
-                    columnSpacing: 20
-                    rowSpacing: 12
-                    Metric {
-                        caption: home.hasTask && home.realTask.aggregateProgress ? I18n.t("整批传输进度") : I18n.t("当前文件进度")
-                        value: home.hasTask && home.realTask.transferPercent >= 0 ? home.realTask.transferPercent.toFixed(2) + "%" : "—"
+                    spacing: 4
+                    BodyText {
+                        text: home.taskName
+                        font.pixelSize: 16
+                        font.weight: Font.DemiBold
                         Layout.fillWidth: true
+                        elide: Text.ElideRight
+                        wrapMode: Text.NoWrap
                     }
-                    Metric {
-                        caption: I18n.t("传输速度")
-                        value: home.taskSpeed
-                        Layout.fillWidth: true
-                    }
-                    Metric {
-                        caption: I18n.t("当前文件 / 序号")
-                        value: home.taskFileProgress + (home.hasTask && home.realTask.filePercent >= 0 ? " · " + home.realTask.filePercent.toFixed(2) + "%" : "")
-                        Layout.fillWidth: true
-                    }
-                    Metric {
-                        caption: home.isSend ? I18n.t("接收端地址") : I18n.t("发送端地址")
-                        value: home.taskPeer
-                        Layout.fillWidth: true
+                    Hint {
+                        text: I18n.t("真实任务")
                     }
                 }
+            }
 
-                Hint {
-                    visible: home.taskError !== ""
-                    text: home.taskError
-                    color: "#ff9c8a"
+            GridLayout {
+                Layout.row: 1
+                Layout.column: home.narrow ? 0 : 1
+                Layout.columnSpan: home.narrow ? 2 : 1
+                Layout.fillWidth: true
+                columns: 2
+                columnSpacing: 20
+                rowSpacing: 12
+                Metric {
+                    caption: home.hasTask && home.realTask.aggregateProgress ? I18n.t("整批传输进度") : I18n.t("当前文件进度")
+                    value: home.hasTask && home.realTask.transferPercent >= 0 ? home.realTask.transferPercent.toFixed(2) + "%" : "—"
+                    Layout.fillWidth: true
+                }
+                Metric {
+                    caption: I18n.t("传输速度")
+                    value: home.taskSpeed
+                    Layout.fillWidth: true
+                }
+                Metric {
+                    caption: I18n.t("当前文件 / 序号")
+                    value: home.taskFileProgress + (home.hasTask && home.realTask.filePercent >= 0 ? " · " + home.realTask.filePercent.toFixed(2) + "%" : "")
+                    Layout.fillWidth: true
+                }
+                Metric {
+                    caption: home.isSend ? I18n.t("接收端地址") : I18n.t("发送端地址")
+                    value: home.taskPeer
                     Layout.fillWidth: true
                 }
             }
         }
 
         Hint {
+            id: taskErrorPreview
+            visible: home.taskError !== ""
+            text: home.taskError
+            color: "#ff9c8a"
+            Layout.fillWidth: true
+            Layout.minimumWidth: 0
+            maximumLineCount: 2
+            elide: Text.ElideRight
+        }
+        AppButton {
+            visible: taskErrorPreview.visible && taskErrorPreview.truncated
+            text: I18n.t("查看完整错误")
+            implicitHeight: 32
+            padding: 6
+            onClicked: home.notifyRequested(home.taskError)
+        }
+        Hint {
             visible: home.hasTask && home.realTask.aggregateProgress
             text: I18n.t("校验进度") + ": " + (home.hasTask && home.realTask.verifyPercent >= 0 ? home.realTask.verifyPercent.toFixed(2) + "%" : "—") + " · " + (home.hasTask ? home.realTask.verifyStatus : "")
             Layout.fillWidth: true
         }
         Hint {
+            visible: home.hasTask
             text: home.hasTask && home.realTask.direction === "send"
                 ? I18n.t("本端发送结束仅代表引擎结束，不能保证已取得对方保存确认。DLL圆环显示整批进度，校验时单独显示校验进度；旧进程后端保留当前文件语义。")
                 : I18n.t("文件由传输引擎校验。传输与保存完成前，请保持双方在线。")
@@ -243,58 +263,87 @@ ColumnLayout {
             } }
             AppButton { text: I18n.t("复制口令"); onClicked: { AppController.copyToClipboard(home.realTask.code); home.notifyRequested(I18n.t("已复制所选任务的口令")); } }
         }
-        Hint { text: home.hasTask ? (home.realTask.resultSummary || "") : ""; Layout.fillWidth: true }
+        Hint {
+            text: home.hasTask ? (home.realTask.resultSummary || "") : ""
+            visible: text !== ""
+            Layout.fillWidth: true
+        }
         AppButton {
             visible: home.hasTask && (home.realTask.files || []).length > 0
             text: I18n.t("文件结果详情")
             onClicked: home.notifyRequested(home.realTask.files.map(function(file) { return file.path + "\n" + file.status + " · " + file.bytes_done + "/" + file.size + " bytes"; }).join("\n\n"))
         }
-        Rule { }
+        Rule { visible: home.hasTask }
 
         Hint {
             visible: home.hasTask && home.realTask.retrySeconds >= 0
             text: "自动重连剩余 " + (home.hasTask ? home.realTask.retrySeconds : 0) + " 秒 · 原会话可能已结束，部分文件保留"
             Layout.fillWidth: true
         }
-        FieldBox {
-            id: recoverCodeField
-            visible: home.hasTask && home.realTask.canRecover && home.realTask.needsCode
-            placeholderText: I18n.t("恢复接收：输入对方当前有效口令")
-            echoMode: home.revealCode ? TextInput.Normal : TextInput.Password
-            Layout.fillWidth: true
-        }
-        AppButton {
+        GridLayout {
             visible: home.hasTask && home.realTask.canRecover
-            text: home.isSend ? I18n.t("检查并恢复发送") : I18n.t("检查并重新接收")
-            enabled: home.isSend || recoverCodeField.text.length >= 6
-            onClicked: { AppController.resumeTask(home.selectedTaskId, recoverCodeField.text); recoverCodeField.text = ""; }
-        }
-        RowLayout {
             Layout.fillWidth: true
-            UiIcon {
-                symbol: "shield"
-                tone: "muted"
-                width: 16
-                height: 16
-            }
-            Hint {
-                text: I18n.t("地址不作为身份认证")
+            columns: home.narrow ? 1 : 2
+            rowSpacing: 8
+
+            FieldBox {
+                id: recoverCodeField
+                visible: home.hasTask && home.realTask.needsCode
+                placeholderText: I18n.t("恢复接收：输入对方当前有效口令")
+                echoMode: home.revealCode ? TextInput.Normal : TextInput.Password
                 Layout.fillWidth: true
             }
             AppButton {
-                visible: home.hasTask && home.selectedTaskId !== "" && !home.realTask.terminal
-                text: home.hasTask && home.realTask.canRecover
-                      ? I18n.t(home.isSend ? "移除中断记录" : "移除记录并清理未完成文件") : I18n.t("取消任务")
-                onClicked: {
-                    if (home.realTask.canRecover) { AppController.discardInterruptedTask(home.selectedTaskId); }
-                    else { AppController.cancelTask(home.selectedTaskId); }
+                text: home.isSend ? I18n.t("检查并恢复发送") : I18n.t("检查并重新接收")
+                enabled: home.isSend || recoverCodeField.text.length >= 6
+                onClicked: { AppController.resumeTask(home.selectedTaskId, recoverCodeField.text); recoverCodeField.text = ""; }
+            }
+        }
+        GridLayout {
+            visible: home.hasTask
+            Layout.fillWidth: true
+            columns: home.narrow ? 1 : 2
+            columnSpacing: 8
+            rowSpacing: 8
+
+            RowLayout {
+                Layout.fillWidth: true
+                UiIcon {
+                    symbol: "shield"
+                    tone: "muted"
+                    width: 16
+                    height: 16
+                }
+                Hint {
+                    text: I18n.t("地址不作为身份认证")
+                    Layout.fillWidth: true
                 }
             }
-            AppButton {
-                text: I18n.t("连接详情")
-                onClicked: home.notifyRequested(home.hasTask
-                                                ? I18n.t("对端：") + home.taskPeer + "\n本任务本地中继端口：" + (home.realTask.localRelayPort || "—") + I18n.t("\nIP 不代表已验证的身份。")
-                                                : I18n.t("暂无连接信息"))
+
+            Flow {
+                Layout.fillWidth: home.narrow
+                Layout.minimumWidth: 0
+                Layout.preferredWidth: connectionAction.implicitWidth
+                                       + (taskAction.visible ? taskAction.implicitWidth + spacing : 0)
+                spacing: 8
+
+                AppButton {
+                    id: taskAction
+                    visible: home.hasTask && !home.realTask.terminal
+                    text: home.hasTask && home.realTask.canRecover
+                          ? I18n.t(home.isSend ? "移除中断记录" : "移除记录并清理未完成文件") : I18n.t("取消任务")
+                    onClicked: {
+                        if (home.realTask.canRecover) { AppController.discardInterruptedTask(home.selectedTaskId); }
+                        else { AppController.cancelTask(home.selectedTaskId); }
+                    }
+                }
+                AppButton {
+                    id: connectionAction
+                    text: I18n.t("连接详情")
+                    onClicked: home.notifyRequested(home.hasTask
+                                                    ? I18n.t("对端：") + home.taskPeer + "\n本任务本地中继端口：" + (home.realTask.localRelayPort || "—") + I18n.t("\nIP 不代表已验证的身份。")
+                                                    : I18n.t("暂无连接信息"))
+                }
             }
         }
     }
