@@ -13,29 +13,35 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 本机 Qt 位置作默认值；调用方通过命令行传入 CMAKE_PREFIX_PATH 时以传入值为准，便于换机或换工具链。
-if (NOT DEFINED CMAKE_PREFIX_PATH)
+if (WIN32 AND NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH "D:/qt/QT/6.10.1/msvc2022_64")
 endif ()
 
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg Concurrent)
+
+# Linux 桌面版 Qt 安装器使用用户目录。显式传入的 Qt6_DIR 或 CMAKE_PREFIX_PATH 优先。
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND NOT CMAKE_CROSSCOMPILING)
+    set(FLOWDROP_QT_HINTS "$ENV{HOME}/Qt/6.10.3/gcc_64")
+endif ()
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg Concurrent
+        HINTS ${FLOWDROP_QT_HINTS})
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 # 物理目录按职责划分，现有头文件名继续通过这些工程内目录查找。
 include_directories(
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/adapter"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/common"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/dll"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/mapping"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/logic/application"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/logic/safety"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/logic/settings"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/models/history"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/models/transfer"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tests/engine"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tests/ui"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/ui/native"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/adapter"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/common"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/dll"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/engine/mapping"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/logic/application"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/logic/safety"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/logic/settings"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/models/history"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/models/transfer"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/tests/engine"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/tests/ui"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ui/native"
 )
 
 
@@ -165,12 +171,12 @@ if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     add_custom_command(TARGET Croc-DawnUI POST_BUILD
             COMMAND "${CMAKE_COMMAND}" -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/deploy_qml"
             COMMAND "${CMAKE_COMMAND}" -E copy_if_different
-                    ${FLOWDROP_DEPLOY_QML_FILES} "${CMAKE_CURRENT_BINARY_DIR}/deploy_qml"
+            ${FLOWDROP_DEPLOY_QML_FILES} "${CMAKE_CURRENT_BINARY_DIR}/deploy_qml"
             COMMAND "${QT_INSTALL_PATH}/bin/windeployqt.exe"
-                    "$<IF:$<CONFIG:Debug>,--debug,--release>"
-                    --translations zh_CN
-                    --qmldir "${CMAKE_CURRENT_BINARY_DIR}/deploy_qml"
-                    "$<TARGET_FILE:Croc-DawnUI>"
+            "$<IF:$<CONFIG:Debug>,--debug,--release>"
+            --translations zh_CN
+            --qmldir "${CMAKE_CURRENT_BINARY_DIR}/deploy_qml"
+            "$<TARGET_FILE:Croc-DawnUI>"
             VERBATIM)
 endif ()
 
@@ -187,7 +193,7 @@ if (CROCD_QSB_EXECUTABLE)
     add_custom_command(OUTPUT "${CROCD_GLASS_SHADER}"
             COMMAND "${CMAKE_COMMAND}" -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/glass-shaders"
             COMMAND "${CROCD_QSB_EXECUTABLE}" --qt6 --qsbversion 64
-                    -o "${CROCD_GLASS_SHADER}" "${CMAKE_CURRENT_SOURCE_DIR}/src/ui/resources/shaders/glass.frag"
+            -o "${CROCD_GLASS_SHADER}" "${CMAKE_CURRENT_SOURCE_DIR}/src/ui/resources/shaders/glass.frag"
             DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/ui/resources/shaders/glass.frag" VERBATIM)
 else ()
     set(CROCD_GLASS_SHADER "${CMAKE_CURRENT_SOURCE_DIR}/src/ui/resources/shaders/glass.frag.qsb")
@@ -219,18 +225,29 @@ endif ()
 
 # Croc Go 引擎动态库：构建后复制到输出目录。目录可用 -DCROCD_ENGINE_LIB_DIR 覆盖。
 # Windows 使用 croc_engine.dll；Linux/Android 由对应平台的构建提供 libcroc_engine.so。
-set(CROCD_ENGINE_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../Croc-lib/dist/windows-x64" CACHE PATH "Croc 引擎动态库目录")
-if (EXISTS "${CROCD_ENGINE_LIB_DIR}/croc_engine.dll")
+if (WIN32)
+    set(CROCD_ENGINE_NAME "croc_engine.dll")
+    set(CROCD_ENGINE_PLATFORM "windows-x64")
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    set(CROCD_ENGINE_NAME "libcroc_engine.so")
+    set(CROCD_ENGINE_PLATFORM "linux-x64")
+endif ()
+if (DEFINED CROCD_ENGINE_NAME)
+    set(CROCD_ENGINE_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../Croc-lib/dist/${CROCD_ENGINE_PLATFORM}"
+            CACHE PATH "Croc 引擎动态库目录")
+endif ()
+if (DEFINED CROCD_ENGINE_NAME AND EXISTS "${CROCD_ENGINE_LIB_DIR}/${CROCD_ENGINE_NAME}")
     add_custom_command(TARGET Croc-DawnUI POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${CROCD_ENGINE_LIB_DIR}/croc_engine.dll" "$<TARGET_FILE_DIR:Croc-DawnUI>")
+            "${CROCD_ENGINE_LIB_DIR}/${CROCD_ENGINE_NAME}" "$<TARGET_FILE_DIR:Croc-DawnUI>"
+            VERBATIM)
 endif ()
 
 if (CROCD_BUILD_TESTS)
     qt_add_executable(CrocDllRegression src/tests/engine/DllSessionTests.cpp src/engine/dll/CrocEventPump.cpp src/engine/dll/CrocDllSession.cpp src/engine/dll/CrocLibrary.cpp src/engine/dll/CrocLibraryTasks.cpp src/engine/mapping/CrocJsonMap.cpp src/logic/safety/TransferSafety.cpp)
     target_link_libraries(CrocDllRegression PRIVATE Qt6::Concurrent Qt6::Core Qt6::Gui Qt6::Network)
     qt_add_executable(CrocDllLanRegression src/tests/engine/DllLanTests.cpp src/engine/dll/CrocDllSession.cpp src/engine/dll/CrocDllSession.h
-        src/engine/dll/CrocLibrary.cpp src/engine/dll/CrocLibraryTasks.cpp src/engine/mapping/CrocJsonMap.cpp src/engine/dll/CrocEventPump.cpp src/engine/dll/CrocEventPump.h src/logic/safety/TransferSafety.cpp)
+            src/engine/dll/CrocLibrary.cpp src/engine/dll/CrocLibraryTasks.cpp src/engine/mapping/CrocJsonMap.cpp src/engine/dll/CrocEventPump.cpp src/engine/dll/CrocEventPump.h src/logic/safety/TransferSafety.cpp)
     target_link_libraries(CrocDllLanRegression PRIVATE Qt6::Concurrent Qt6::Core Qt6::Gui Qt6::Network)
     set_target_properties(CrocDllLanRegression PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${FLOWDROP_OUTPUT_DIR}")
     set_target_properties(CrocDllRegression PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${FLOWDROP_OUTPUT_DIR}")
