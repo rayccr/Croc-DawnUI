@@ -1,0 +1,1632 @@
+[
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "MSVC",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "qtbase",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "syncqt",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Bootstrap_Attribution_pcre2",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Bootstrap_Attribution_pcre2-sljit",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Bootstrap",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "moc",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "rcc",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "tracepointgen",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "tracegen",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "cmake_automoc_parser",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "EntryPointPrivate",
+    "license": "LicenseRef-Qt-Commercial OR BSD-3-Clause"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledPcre2_Attribution_pcre2-sljit",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledPcre2",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledZLIB",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "ZlibPrivate",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_unicode-character-database",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_unicode-cldr",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_tlexpected",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_siphash",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_blake2",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_md4",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_md5",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_sha1",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_sha3_endian",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_sha3_keccak",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_rfc6234",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_tinycbor",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_doubleconversion",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_easing",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core_Attribution_tika-mimetypes",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Core",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledLibpng",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PngPrivate",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledLibjpeg16bits",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledLibjpeg12bits",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledLibjpeg",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "JpegPrivate",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledFreetype_Attribution_freetype-zlib",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledFreetype_Attribution_freetype-bdf",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledFreetype_Attribution_freetype-pcf",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledFreetype",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "FreetypePrivate_Attribution_freetype-zlib",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "FreetypePrivate_Attribution_freetype-bdf",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "FreetypePrivate_Attribution_freetype-pcf",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "FreetypePrivate",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "BundledHarfbuzz",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "HarfbuzzPrivate",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Concurrent",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Sql",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Network_Attribution_zlib",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Network_Attribution_psl-data",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Network_Attribution_libpsl",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Network",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Xml",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "DBus_Attribution_libdbus-1-headers",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "DBus",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "uic",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "qdbuscpp2xml",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "qdbusxml2cpp",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "qlalr",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "qvkgen",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "qtpaths",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "androiddeployqt",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "androidtestrunner",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "windeployqt",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_rhi-miniengine-d3d12-mipmap",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_opengl-headers",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_opengl-es2-headers",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_grayraster",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_smooth-scaling-algorithm",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_xserverhelper",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_aglfn",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_vulkanmemoryallocator",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_webgradients",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_icc-srgb-color-profile",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_d3d12memoryallocator",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_md4c",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_zlib",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui_Attribution_vulkan-xml-spec",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Gui",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "ExampleIconsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "ExamplesAssetDownloaderPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "OpenGL",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Widgets",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "OpenGLWidgets",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "DeviceDiscoverySupportPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "FbSupportPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "TestInternalsPrivate_Attribution_cmake-runcmake-test-modules",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "TestInternalsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Test_Attribution_catch2",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Test_Attribution_cycle",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Test_Attribution_linuxperf",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Test_Attribution_valgrind",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Test",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PrintSupport",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QPSQLDriverPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QODBCDriverPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QOCIDriverPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QSQLiteDriverPlugin_Attribution_sqlite",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QSQLiteDriverPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QIBaseDriverPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QMimerSQLDriverPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QMinimalIntegrationPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QOffscreenIntegrationPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QWindowsIntegrationPlugin_Attribution_wintab",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QWindowsIntegrationPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QWindowsDirect2DIntegrationPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QICOPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QJpegPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QGifPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QTuioTouchPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QModernWindowsStylePlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QNLMNIPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QTlsBackendOpenSSLPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QSchannelBackendPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QTlsBackendCertOnlyPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "QtLibraryInfo",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "qmake",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "GlobalConfig",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "GlobalConfigPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Platform_Attribution_extra-cmake-modules",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Platform_Attribution_kwin",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Platform",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PlatformCommonInternal",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PlatformModuleInternal",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PlatformPluginInternal",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PlatformAppInternal",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PlatformToolInternal",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PlatformExampleInternal",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "WrapAtomic",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "PostgreSQL",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "ODBC",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Oracle",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Interbase",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtbase-6.10.1.spdx.json",
+    "name": "Mimer",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "MSVC",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtdeclarative",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlToolingSettingsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlTypeRegistrarPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlIntegration",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "Qml_Attribution_masm",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "Qml",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlModels",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "modelsplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlCore",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtqmlcoreplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlNetwork",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlNetworkplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlWorkerScript",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "workerscriptplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlMeta",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlLocalStorage",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmllocalstorageplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlXmlListModel",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlxmllistmodelplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "quickwindow",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "Quick",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquick2plugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickLayouts_Attribution_yoga",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickLayouts",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qquicklayoutsplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickTest",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickTestplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickTestUtilsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickParticlesPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "particlesplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickEffects",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "effectsplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickShapesDesignHelpersPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickshapesdesignhelpersplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickShapesPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlshapesplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickVectorImageGeneratorPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickVectorImage",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qquickvectorimageplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickVectorImageHelpers",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qquickvectorimagehelpersplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickWidgets",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickTemplates2",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquicktemplates2plugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2Impl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2implplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2BasicStyleImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2basicstyleimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2Basic",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2basicstyleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2FusionStyleImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2fusionstyleimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2Fusion",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2fusionstyleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2ImagineStyleImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2imaginestyleimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2Imagine",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2imaginestyleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2MaterialStyleImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2materialstyleimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2Material_Attribution_shadow_angular_material",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2Material",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2materialstyleplugin_Attribution_shadow_angular_material",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2materialstyleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2UniversalStyleImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2universalstyleimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2Universal",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2universalstyleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2FluentWinUI3StyleImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2fluentwinui3styleimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2fluentwinui3styleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2WindowsStyleImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2windowsstyleimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2windowsstyleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControls2",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2plugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickDialogs2Utils",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickDialogs2QuickImpl",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickdialogs2quickimplplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickDialogs2",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickdialogsplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qtquickcontrols2nativestyleplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControlsTestUtilsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QuickControlsTestUtilsPrivateplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsSynchronizer",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsSynchronizerplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsSettings",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlsettingsplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsQmlModels",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "labsmodelsplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsFolderListModel",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlfolderlistmodelplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsAnimation",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "labsanimationplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsPlatform",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsPlatformplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsWavefrontMesh",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlwavefrontmeshplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "LabsSharedImage",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "sharedimageplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlAssetDownloader",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlAssetDownloaderplugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlCompiler",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlDomPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlFormatPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlaotstats",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlcachegen",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlLSPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "PacketProtocolPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQmlNativeDebugConnectorFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QDebugMessageServiceFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQmlProfilerServiceFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQmlDebuggerServiceFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQmlNativeDebugServiceFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQmlDebugServerFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QTcpServerConnectionFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QLocalClientConnectionFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQmlInspectorServiceFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQuickProfilerAdapterFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QQmlPreviewServiceFactoryPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlLintQuickPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlLintQdsPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlLSQuickPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "quicktooling",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "QmlDebugPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmldom",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmllint",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmltc",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmltyperegistrar",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmljsrootgen",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlformat",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlimportscanner",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlls",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qml_tool",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlprofiler",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlpreview",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlscene",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmltime",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmlplugindump",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmltestrunner",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "qmleasing",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtdeclarative-6.10.1.spdx.json",
+    "name": "svgtoqml",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qtsvg-6.10.1.spdx.json",
+    "name": "MSVC",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtsvg-6.10.1.spdx.json",
+    "name": "qtsvg",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtsvg-6.10.1.spdx.json",
+    "name": "Svg_Attribution_xsvg",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qtsvg-6.10.1.spdx.json",
+    "name": "Svg",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtsvg-6.10.1.spdx.json",
+    "name": "QSvgIconPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtsvg-6.10.1.spdx.json",
+    "name": "QSvgPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qtsvg-6.10.1.spdx.json",
+    "name": "SvgWidgets",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "MSVC",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qttools",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "UiPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "UiTools",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "Tools",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "lconvert",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "lprodump",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "lrelease",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "lrelease-pro",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "lupdate",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "lupdate-pro",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "linguist",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "Linguist",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "Designer",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "DesignerComponentsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "designer",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "QAxWidgetPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "QQuickWidgetPlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "pixeltool",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "Help",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "assistant_Attribution_litehtml-gumbo",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "assistant_Attribution_litehtml",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "assistant",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qhelpgenerator",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "QHelpEnginePlugin",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qdistancefieldgenerator",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qtattributionsscanner",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qtplugininfo",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "QDocCatchPrivate",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "QDocCatchConversionsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "QDocCatchGeneratorsPrivate",
+    "license": "LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qdoc",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qdbus",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qdbusviewer",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "qtdiag",
+    "license": "LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0"
+  },
+  {
+    "module": "qttools-6.10.1.spdx.json",
+    "name": "WrapLibClang",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttranslations-6.10.1.spdx.json",
+    "name": "MSVC",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttranslations-6.10.1.spdx.json",
+    "name": "qttranslations",
+    "license": "NOASSERTION"
+  },
+  {
+    "module": "qttranslations-6.10.1.spdx.json",
+    "name": "Translations",
+    "license": "LicenseRef-Qt-Commercial OR BSD-3-Clause"
+  }
+]

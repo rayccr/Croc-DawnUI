@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="title desc">
+  <title id="title">破晓 · P2P 文件传输</title>
+  <desc id="desc">极简像素风：无光芒的渐变朝阳、地平线、两台电脑与双向文件传输</desc>
+  <defs>
+    <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7C5CE8"/>
+      <stop offset="0.42" stop-color="#D478D4"/>
+      <stop offset="0.72" stop-color="#FA9F9C"/>
+      <stop offset="1" stop-color="#FFD18B"/>
+    </linearGradient>
+    <linearGradient id="horizon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#426CE1"/>
+      <stop offset="0.5" stop-color="#70DBEC"/>
+      <stop offset="1" stop-color="#426CE1"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6C77E5"/>
+      <stop offset="1" stop-color="#3651A4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 破晓：用直角阶梯构造太阳，刻意不添加任何光线 -->
+  <path fill="url(#dawn)" d="M240 106H272V114H296V122H312V130H328V146H344V162H352V186H360V242H152V186H160V162H168V146H184V130H200V122H216V114H240Z"/>
+
+  <!-- 简约的像素地平线：蓝色象征连接与清晨 -->
+  <path fill="url(#horizon)" d="M88 245H152V237H200V229H312V237H360V245H424V257H88Z"/>
+  <path fill="#504EAD" opacity=".55" d="M112 265H400V272H112Z"/>
+
+  <!-- 左侧设备 -->
+  <path fill="#323F83" d="M81 319H207V408H81Z"/>
+  <path fill="#A6B8FF" d="M89 327H199V400H89Z"/>
+  <path fill="url(#screen)" d="M99 337H189V390H99Z"/>
+  <path fill="#444F9F" d="M77 408H211V420H225V430H63V420H77Z"/>
+  <path fill="#B9C9FF" d="M77 409H211V416H225V425H63V416H77Z"/>
+  <path fill="#4A61AD" d="M126 418H162V425H126Z"/>
+  <!-- 左侧文件夹 -->
+  <path fill="#D6E9FF" d="M117 352H138V358H169V378H117Z"/>
+  <path fill="#91B7ED" d="M122 362H164V374H122Z"/>
+
+  <!-- 右侧设备 -->
+  <path fill="#323F83" d="M305 319H431V408H305Z"/>
+  <path fill="#A6B8FF" d="M313 327H423V400H313Z"/>
+  <path fill="url(#screen)" d="M323 337H413V390H323Z"/>
+  <path fill="#444F9F" d="M301 408H435V420H449V430H287V420H301Z"/>
+  <path fill="#B9C9FF" d="M301 409H435V416H449V425H287V416H301Z"/>
+  <path fill="#4A61AD" d="M350 418H386V425H350Z"/>
+  <!-- 右侧文件夹 -->
+  <path fill="#D6E9FF" d="M341 352H362V358H393V378H341Z"/>
+  <path fill="#91B7ED" d="M346 362H388V374H346Z"/>
+
+  <!-- 中心文件：直角折页，避免复杂装饰 -->
+  <path fill="#363E91" d="M240 324H267L280 337V380H240Z"/>
+  <path fill="#E9E7FF" d="M244 328H264V341H276V376H244Z"/>
+  <path fill="#A0A5E8" d="M264 328V341H276Z"/>
+  <path fill="#7878C5" d="M250 350H270V354H250ZM250 359H270V363H250Z"/>
+
+  <!-- 双向 P2P：两条简洁的像素箭头，无多余环绕光效 -->
+  <path fill="#78DAF1" d="M192 293H276V285H292V293H300V301H292V309H276V301H192Z"/>
+  <path fill="#F1A1BE" d="M320 397H236V405H220V397H212V389H220V381H236V389H320Z"/>
+</svg>

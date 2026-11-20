@@ -1,0 +1,42 @@
+[
+  {
+    "module": "qtbase",
+    "version": "6.10.1",
+    "url": "https://download.qt.io/archive/qt/6.10/6.10.1/submodules/qtbase-everywhere-src-6.10.1.tar.xz",
+    "filename": "qtbase-everywhere-src-6.10.1.tar.xz",
+    "size": 50234516,
+    "sha256": "5a6226f7e23db51fdc3223121eba53f3f5447cf0cc4d6cb82a3a2df7a65d265d"
+  },
+  {
+    "module": "qtdeclarative",
+    "version": "6.10.1",
+    "url": "https://download.qt.io/archive/qt/6.10/6.10.1/submodules/qtdeclarative-everywhere-src-6.10.1.tar.xz",
+    "filename": "qtdeclarative-everywhere-src-6.10.1.tar.xz",
+    "size": 37552260,
+    "sha256": "4fb4efb894e0b96288543505d69794d684bcfbe4940ce181d3e6817bda54843e"
+  },
+  {
+    "module": "qtsvg",
+    "version": "6.10.1",
+    "url": "https://download.qt.io/archive/qt/6.10/6.10.1/submodules/qtsvg-everywhere-src-6.10.1.tar.xz",
+    "filename": "qtsvg-everywhere-src-6.10.1.tar.xz",
+    "size": 2613980,
+    "sha256": "c02f355a58f3bbcf404a628bf488b6aeb2d84a94c269afdb86f6e529343ab01f"
+  },
+  {
+    "module": "qttools",
+    "version": "6.10.1",
+    "url": "https://download.qt.io/archive/qt/6.10/6.10.1/submodules/qttools-everywhere-src-6.10.1.tar.xz",
+    "filename": "qttools-everywhere-src-6.10.1.tar.xz",
+    "size": 10047008,
+    "sha256": "8148408380ffea03101a26305c812b612ea30dbc07121e58707601522404d49b"
+  },
+  {
+    "module": "qttranslations",
+    "version": "6.10.1",
+    "url": "https://download.qt.io/archive/qt/6.10/6.10.1/submodules/qttranslations-everywhere-src-6.10.1.tar.xz",
+    "filename": "qttranslations-everywhere-src-6.10.1.tar.xz",
+    "size": 1626252,
+    "sha256": "8e49a2df88a12c376a479ae7bd272a91cf57ebb4e7c0cf7341b3565df99d2314"
+  }
+]
