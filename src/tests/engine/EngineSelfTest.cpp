@@ -20,6 +20,7 @@
 #include <QHash>  // 进度记录
 #include <QProcess>  // 中继进程
 #include <QTcpSocket>  // 中继就绪探测
+#include <QTemporaryDir>  // 收发自检临时目录
 #include <QThread>  // 等待间隔
 #include <QTimer>  // 超时控制
 #include <QVariantMap>  // 任务详情
@@ -690,10 +691,15 @@ int RunEngineDllLocalCheck()  // 无 croc.exe：库内本地中继收发
         PrintLine(QStringLiteral("引擎库不可用：") + libEngine.GetLastErrorText());
         return 1;
     }
-    const QString strWorkDir = QDir::tempPath() + QStringLiteral("/CrocLocal-") + QString::number(QCoreApplication::applicationPid());
-    const QString strSrcDir = strWorkDir + QStringLiteral("/src");
-    const QString strDstDir = strWorkDir + QStringLiteral("/dst");
-    QDir().mkpath(strSrcDir); QDir().mkpath(strDstDir);
+    QTemporaryDir dirWork(QDir::tempPath() + QStringLiteral("/CrocLocal-XXXXXX"));
+    if (!dirWork.isValid()) { PrintLine(QStringLiteral("无法创建本地中继测试目录")); return 1; }
+    const QString strSrcDir = dirWork.filePath(QStringLiteral("src"));
+    const QString strDstDir = dirWork.filePath(QStringLiteral("dst"));
+    if (!QDir().mkpath(strSrcDir) || !QDir().mkpath(strDstDir))
+    {
+        PrintLine(QStringLiteral("无法创建收发测试目录"));
+        return 1;
+    }
     const QString strFile = strSrcDir + QStringLiteral("/local.bin");
     QFile fileSource(strFile);
     if (!fileSource.open(QIODevice::WriteOnly)) { PrintLine(QStringLiteral("无法创建测试文件")); return 1; }
@@ -716,6 +722,27 @@ int RunEngineDllLocalCheck()  // 无 croc.exe：库内本地中继收发
         return 1;
     }
     QJsonObject objRecv;
+    // 启动发送是异步的。待本地中继就绪后，再用同一个口令启动接收。
+    STaskSnapshot stSender;
+    QElapsedTimer timerReady;
+    timerReady.start();
+    while (timerReady.elapsed() < 8000)
+    {
+        if (MapCrocSnapshotJson(libEngine.GetTaskSnapshot(nSendId), stSender, strError)
+            && ((stSender.enStage == ETaskStage::STAGE_WAITING_PEER && !stSender.m_strLocalRelayPort.isEmpty())
+                || stSender.bTerminal))
+        {
+            break;
+        }
+        QThread::msleep(50);
+    }
+    if (stSender.enStage != ETaskStage::STAGE_WAITING_PEER || stSender.m_strLocalRelayPort.isEmpty())
+    {
+        PrintLine(QStringLiteral("发送端中继未就绪：") + stSender.strError);
+        libEngine.Shutdown();
+        return 1;
+    }
+
     objRecv.insert(QStringLiteral("code"), QStringLiteral("local-relay-1"));
     objRecv.insert(QStringLiteral("save_path"), strDstDir);
     objRecv.insert(QStringLiteral("auto_accept"), true);
@@ -727,7 +754,7 @@ int RunEngineDllLocalCheck()  // 无 croc.exe：库内本地中继收发
     if (!libEngine.StartReceive(QJsonDocument(objRecv).toJson(QJsonDocument::Compact), nRecvId, strError))
     {
         PrintLine(QStringLiteral("启动接收失败：") + strError);
-        libEngine.CancelTask(nSendId);
+        libEngine.Shutdown();
         return 1;
     }
     bool bSendDone = false; bool bRecvDone = false;
@@ -748,12 +775,24 @@ int RunEngineDllLocalCheck()  // 无 croc.exe：库内本地中继收发
     const qint64 llDst = QFileInfo::exists(strReceived) ? QFileInfo(strReceived).size() : -1;
     PrintLine(QStringLiteral("本地中继：发送结束=%1 接收结束=%2 源=%3 收=%4")
               .arg(bSendDone ? QStringLiteral("是") : QStringLiteral("否"), bRecvDone ? QStringLiteral("是") : QStringLiteral("否")).arg(llSrc).arg(llDst));
-    libEngine.CancelTask(nSendId); libEngine.CancelTask(nRecvId);
-    QThread::msleep(200);
-    while (!libEngine.PollEvent().isEmpty()) { }
-    libEngine.ReleaseTask(nSendId); libEngine.ReleaseTask(nRecvId);
-    QDir(strWorkDir).removeRecursively();
-    const bool bPass = bRecvDone && (llSrc == llDst) && (llSrc > 0);
+    QFile fileSourceHash(strFile);
+    QFile fileReceivedHash(strReceived);
+    QCryptographicHash hashSource(QCryptographicHash::Sha256);
+    QCryptographicHash hashReceived(QCryptographicHash::Sha256);
+    const bool bHashOk = fileSourceHash.open(QIODevice::ReadOnly) && fileReceivedHash.open(QIODevice::ReadOnly)
+        && hashSource.addData(&fileSourceHash) && hashReceived.addData(&fileReceivedHash)
+        && hashSource.result() == hashReceived.result();
+    PrintLine(QStringLiteral("SHA-256 校验：%1").arg(bHashOk ? QStringLiteral("一致") : QStringLiteral("未通过")));
+    if (!bHashOk || !bSendDone || !bRecvDone)
+    {
+        STaskSnapshot stReceiver;
+        if (MapCrocSnapshotJson(libEngine.GetTaskSnapshot(nRecvId), stReceiver, strError) && !stReceiver.strError.isEmpty())
+        { PrintLine(QStringLiteral("接收错误：") + stReceiver.strError); }
+        if (MapCrocSnapshotJson(libEngine.GetTaskSnapshot(nSendId), stSender, strError) && !stSender.strError.isEmpty())
+        { PrintLine(QStringLiteral("发送错误：") + stSender.strError); }
+    }
+    libEngine.Shutdown();
+    const bool bPass = bSendDone && bRecvDone && (llSrc == llDst) && (llSrc > 0) && bHashOk;
     PrintLine(QStringLiteral("自检结果：%1").arg(bPass ? QStringLiteral("通过") : QStringLiteral("未通过")));
     return bPass ? 0 : 1;
 }
