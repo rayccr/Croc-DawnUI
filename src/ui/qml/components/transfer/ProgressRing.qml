@@ -42,7 +42,7 @@ Item {
         anchors.centerIn: parent
         spacing: 4
         BodyText {
-            width: 104
+            width: ring.width
             text: ring.progress < 0 ? "—" : ring.progress.toFixed(2) + "%"
             wrapMode: Text.NoWrap
             fontSizeMode: Text.HorizontalFit
@@ -52,7 +52,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
         }
         Hint {
-            width: 104
+            width: ring.width
             text: ring.caption
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 11
