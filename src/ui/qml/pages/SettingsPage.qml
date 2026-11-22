@@ -76,6 +76,7 @@ ColumnLayout {
 
             ColumnLayout {
                 required property var modelData
+                visible: Qt.platform.os !== "android" || modelData.key !== "save"
                 Layout.fillWidth: true
                 spacing: 8
 
@@ -127,7 +128,7 @@ ColumnLayout {
         }
 
         Hint {
-            text: settingsPage.tab === 0 ? I18n.t("保存位置会作为接收页的默认目录；通知与托盘行为尚未接入系统，暂不生效。")
+            text: settingsPage.tab === 0 ? I18n.t(Qt.platform.os === "android" ? "文件先保存到应用内，完成后可从传输历史导出。" : "保存位置会作为接收页的默认目录；通知与托盘行为尚未接入系统，暂不生效。")
                   : settingsPage.tab === 1 ? I18n.t("限速与目录打包会传给引擎；并发上限的调度尚未实现。")
                   : settingsPage.tab === 2 ? I18n.t("中继与仅局域网参数传给引擎；强制代理与指定路径尚未验证，暂不开放。")
                   : settingsPage.tab === 3 ? I18n.t("曲线传给引擎；自定义口令在发送任务中填写；传输加密由引擎处理，不提供关闭加密的开关。")

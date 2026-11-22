@@ -46,6 +46,10 @@ ETaskStage PhaseToStage(const QString& _strPhase)
 
 ECrocBackend ResolveCrocBackend(const QString& _strName)  // 解析后端名称
 {
+#ifdef Q_OS_ANDROID
+    Q_UNUSED(_strName);
+    return ECrocBackend::BACKEND_DLL;  // APK 内置 C ABI 引擎。
+#else
     const QString strName = _strName.trimmed();
     if (strName.compare(QStringLiteral("dll"), Qt::CaseInsensitive) == 0)
     {
@@ -77,6 +81,7 @@ ECrocBackend ResolveCrocBackend(const QString& _strName)  // 解析后端名称
     const QString strDevLib = QDir::cleanPath(strAppDir + QStringLiteral("/../../Croc-lib/dist/linux-x64/") + strLibName);
 #endif
     return QFileInfo::exists(strDevLib) ? ECrocBackend::BACKEND_DLL : ECrocBackend::BACKEND_PROCESS;
+#endif
 }
 
 bool MapCrocSnapshotJson(const QByteArray& _arrJson, STaskSnapshot& _stSnapshot, QString& _strError)  // 快照映射

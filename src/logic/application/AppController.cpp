@@ -31,6 +31,11 @@
 #include "CrocLibrary.h"  // 库模式引擎状态  // 引擎适配层
 #include "TaskFilterModel.h"  // 方向过滤模型
 #include "TransferTaskModel.h"  // 任务模型
+#ifdef Q_OS_ANDROID
+#include "AndroidFiles.h"
+#include <QFutureWatcher>
+#include <QtConcurrentRun>
+#endif
 
 namespace
 {
@@ -425,6 +430,9 @@ QString AppController::startReceive(const QString& _strCode, const QString& _str
         || QStringList{QStringLiteral("update"), QStringLiteral("upgrade"), QStringLiteral("version")}.contains(_strCode.toLower()))
     { ShowError(QStringLiteral("请输入有效口令，长度至少 6 个字符且不含空白。")); return QString(); }
     const QString strOutDir = localPath(_strOutDir);
+#ifdef Q_OS_ANDROID
+    if (strOutDir != GetDefaultSaveDir()) { ShowError(QStringLiteral("请使用应用的接收位置。")); return QString(); }
+#endif
     if (strOutDir.isEmpty() || !QDir().mkpath(strOutDir) || !QFileInfo(strOutDir).isDir())
     { ShowError(QStringLiteral("保存目录不可用，请更换现有的本地目录。")); return QString(); }
     QTemporaryFile fileProbe(QDir(strOutDir).filePath(QStringLiteral(".crocd-write-XXXXXX")));
@@ -438,7 +446,16 @@ QString AppController::startReceive(const QString& _strCode, const QString& _str
         STaskSnapshot stTask; stTask.enDirection = ETaskDirection::DIRECTION_RECEIVE;
         stTask.strTaskId = QStringLiteral("recv-") + QUuid::createUuid().toString(QUuid::WithoutBraces);
         stTask.strTargetDir = QDir(strOutDir).canonicalPath();
+#ifdef Q_OS_ANDROID
+        // 每个接收任务独占目录，历史中的导出只会复制该任务的文件。
+        stTask.strTargetDir = QDir(stTask.strTargetDir).filePath(stTask.strTaskId);
+        if (!QDir().mkpath(stTask.strTargetDir)) { ShowError(QStringLiteral("无法创建接收目录。")); return QString(); }
+        const QString strTaskId = EnqueueTask(stTask, _strCode);
+        if (strTaskId.isEmpty()) { QDir().rmdir(stTask.strTargetDir); }
+        return strTaskId;
+#else
         return EnqueueTask(stTask, _strCode);
+#endif
     }
     int nActive = 0;
     const QString strCanonical = QDir(strOutDir).canonicalPath();
@@ -592,7 +609,11 @@ void AppController::ShowError(const QString& _strText)
 QString AppController::ValidateStart() const
 {
     if (!m_bConfigLoaded) { return QStringLiteral("配置未能可靠读取，请检查权限，并在设置中确认后保存；本次不会自动连接。"); }
+#ifdef Q_OS_ANDROID
+    if (!EngineAvailable()) { return QStringLiteral("未检测到可用 Croc 引擎，请重新安装安卓应用。"); }
+#else
     if (!EngineAvailable()) { return QStringLiteral("未检测到可用 Croc 引擎，请检查程序目录中的 croc.exe 后重启。"); }
+#endif
     return ConfigStore::Validate(GetSettings());
 }
 
@@ -630,6 +651,61 @@ void AppController::openLocation(const QString& _strPath)
     if (strPath.isEmpty() || !QFileInfo::exists(strPath)) { ShowError(QStringLiteral("位置已移动或删除，请检查文件是否仍存在。")); return; }
     const QString strFolder = QFileInfo(strPath).isDir() ? strPath : QFileInfo(strPath).absolutePath();
     if (!QDesktopServices::openUrl(QUrl::fromLocalFile(strFolder))) { ShowError(QStringLiteral("无法打开文件管理器，请手动查看此目录。")); }
+}
+
+void AppController::importAndroidDocuments(const QStringList& _lstUris)
+{
+#ifdef Q_OS_ANDROID
+    if (_lstUris.isEmpty() || m_bAndroidFileBusy) { return; }
+    m_bAndroidFileBusy = true;
+    emit androidFileBusyChanged();
+    auto* pWatcher = new QFutureWatcher<QStringList>(this);
+    connect(pWatcher, &QFutureWatcher<QStringList>::finished, this, [this, pWatcher]()
+    {
+        const QStringList lstPaths = pWatcher->result();
+        pWatcher->deleteLater();
+        m_bAndroidFileBusy = false;
+        emit androidFileBusyChanged();
+        if (lstPaths.isEmpty()) { ShowError(QStringLiteral("无法导入文件，请检查存储空间或重新选择。")); }
+        else { emit androidDocumentsImported(lstPaths); }
+    });
+    pWatcher->setFuture(QtConcurrent::run(AndroidFiles::Import, _lstUris));
+#else
+    Q_UNUSED(_lstUris);
+#endif
+}
+
+void AppController::exportAndroidReceive(const QString& _strPath, const QString& _strTreeUri)
+{
+#ifdef Q_OS_ANDROID
+    if (m_bAndroidFileBusy) { return; }
+    const QFileInfo stSource(_strPath);
+    const QString strSource = stSource.canonicalFilePath();
+    const QRegularExpression regexTaskDir(QStringLiteral("^recv-[0-9a-f-]{36}$"));
+    if (strSource.isEmpty() || !stSource.isDir() || stSource.isSymLink()
+        || QFileInfo(strSource).absolutePath() != QDir(GetDefaultSaveDir()).canonicalPath()
+        || !regexTaskDir.match(stSource.fileName()).hasMatch())
+    {
+        ShowError(QStringLiteral("找不到该任务的接收文件。"));
+        return;
+    }
+    m_bAndroidFileBusy = true;
+    emit androidFileBusyChanged();
+    auto* pWatcher = new QFutureWatcher<bool>(this);
+    connect(pWatcher, &QFutureWatcher<bool>::finished, this, [this, pWatcher]()
+    {
+        const bool bExported = pWatcher->result();
+        pWatcher->deleteLater();
+        m_bAndroidFileBusy = false;
+        emit androidFileBusyChanged();
+        ShowError(bExported ? QStringLiteral("已导出到所选文件夹。")
+                            : QStringLiteral("导出失败，请检查存储空间或选择其他文件夹。"));
+    });
+    pWatcher->setFuture(QtConcurrent::run(AndroidFiles::Export, strSource, _strTreeUri));
+#else
+    Q_UNUSED(_strPath);
+    Q_UNUSED(_strTreeUri);
+#endif
 }
 
 void AppController::QueuePrompt(const QString& _strTaskId, const QString& _strTitle, const QString& _strBody)

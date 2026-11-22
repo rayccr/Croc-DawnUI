@@ -225,7 +225,26 @@ endif ()
 
 # Croc Go 引擎动态库：构建后复制到输出目录。目录可用 -DCROCD_ENGINE_LIB_DIR 覆盖。
 # Windows 使用 croc_engine.dll；Linux/Android 由对应平台的构建提供 libcroc_engine.so。
-if (WIN32)
+if (ANDROID)
+    if (Qt6_VERSION VERSION_GREATER_EQUAL 6.6)
+        qt_policy(SET QTP0002 NEW)
+    endif ()
+    set(CROCD_ENGINE_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../Croc-lib/dist/android-${CMAKE_ANDROID_ARCH_ABI}"
+            CACHE PATH "Android Croc 引擎动态库目录")
+    set(CROCD_ANDROID_ENGINE "${CROCD_ENGINE_LIB_DIR}/libcroc_engine.so")
+    if (NOT EXISTS "${CROCD_ANDROID_ENGINE}")
+        message(FATAL_ERROR "缺少 Android Croc 引擎：${CROCD_ANDROID_ENGINE}。请先运行 Croc-lib/scripts/build-android.ps1。")
+    endif ()
+    target_sources(Croc-DawnUI PRIVATE src/ui/native/AndroidFiles.cpp src/ui/native/AndroidFiles.h)
+    set_target_properties(Croc-DawnUI PROPERTIES
+            QT_ANDROID_PACKAGE_NAME "io.crocdawnui.app"
+            QT_ANDROID_APP_NAME "Croc-DawnUI"
+            QT_ANDROID_APP_ICON "@drawable/croc_dawn"
+            QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/android"
+            QT_ANDROID_EXTRA_LIBS "${CROCD_ANDROID_ENGINE}")
+    qt_add_android_permission(Croc-DawnUI NAME android.permission.INTERNET)
+    qt_add_android_permission(Croc-DawnUI NAME android.permission.ACCESS_NETWORK_STATE)
+elseif (WIN32)
     set(CROCD_ENGINE_NAME "croc_engine.dll")
     set(CROCD_ENGINE_PLATFORM "windows-x64")
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")

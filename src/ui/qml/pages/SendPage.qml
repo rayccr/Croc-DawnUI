@@ -15,6 +15,7 @@ ColumnLayout {
     readonly property int selectionCount: selectedItems.length
     property var activeTask: null
     property string startError: ""
+    readonly property bool android: Qt.platform.os === "android"
     function refreshActiveTask() {
         activeTask = activeTaskId !== "" ? AppController.getTask(activeTaskId) : null;
     }
@@ -23,6 +24,7 @@ ColumnLayout {
         target: AppController
         function onTaskRevisionChanged() { sendPage.refreshActiveTask(); }
         function onCodeReady(taskId, code) { if (taskId === sendPage.activeTaskId) { sendPage.refreshActiveTask(); } }
+        function onAndroidDocumentsImported(paths) { sendPage.addUrls(paths); }
     }
     readonly property string displayCode: activeTask && !activeTask.terminal ? activeTask.code : ""
     readonly property string shareCode: activeTask && activeTask.shareReady ? displayCode : ""
@@ -36,6 +38,10 @@ ColumnLayout {
         activeTaskId = "";
         revealCode = AppController.settings.mask !== "默认遮挡";
         if (checked.length < values.length) { notifyRequested(I18n.t("已去重并忽略不存在或不支持的非本地路径，请核对清单。")); }
+    }
+    function addPickedUrls(urls) {
+        if (!android) { addUrls(urls); return; }
+        AppController.importAndroidDocuments(Array.from(urls, url => String(url)));
     }
     function removeItem(index) {
         var values = selectedUrls.slice(); values.splice(index, 1); selectedUrls = values;
@@ -68,13 +74,14 @@ ColumnLayout {
         id: fileDialog
         title: I18n.t("选择要发送的文件")
         fileMode: FileDialog.OpenFiles
-        onAccepted: sendPage.addUrls(selectedFiles)
+        onAccepted: sendPage.addPickedUrls(selectedFiles)
     }
 
     FolderDialog {
         id: folderDialog
         title: I18n.t("选择要发送的文件夹")
-        onAccepted: sendPage.addUrls([selectedFolder])
+        options: sendPage.android ? FolderDialog.ReadOnly : 0
+        onAccepted: sendPage.addPickedUrls([selectedFolder])
     }
 
     // 把 QML 的 file:// URL 转换成 croc 可接受的本地路径
@@ -106,23 +113,25 @@ ColumnLayout {
                     Layout.alignment: Qt.AlignHCenter
                 }
                 BodyText {
-                    text: I18n.t("将文件拖到这里")
+                    text: I18n.t(sendPage.android ? "选择发送内容" : "将文件拖到这里")
                     font.pixelSize: 18
                     font.weight: Font.DemiBold
                     Layout.alignment: Qt.AlignHCenter
                 }
                 Hint {
-                    text: I18n.t("或从设备中选择文件 / 文件夹")
+                    text: I18n.t(sendPage.android ? "从设备中选择文件或文件夹。" : "或从设备中选择文件 / 文件夹")
                     Layout.alignment: Qt.AlignHCenter
                 }
                 RowLayout {
                     Layout.alignment: Qt.AlignHCenter
                     AppButton {
                         text: I18n.t("选择文件")
+                        enabled: !AppController.androidFileBusy
                         onClicked: fileDialog.open()
                     }
                     AppButton {
                         text: I18n.t("选择文件夹")
+                        enabled: !AppController.androidFileBusy
                         onClicked: folderDialog.open()
                     }
                 }
@@ -133,11 +142,12 @@ ColumnLayout {
                 id: dropArea
                 objectName: "sendDropArea"
                 anchors.fill: parent
+                visible: !sendPage.android
                 onFilesDropped: function(paths) { sendPage.addUrls(paths); }
             }
         }
 
-        Hint { text: sendPage.selectedItems.length ? (sendPage.activeTask ? I18n.t("本次任务文件 · ") : I18n.t("待发送清单 · ")) + sendPage.selectedItems.length + I18n.t(" 项") : I18n.t("尚未选择文件"); Layout.fillWidth: true }
+        Hint { text: AppController.androidFileBusy ? I18n.t("正在准备文件…") : (sendPage.selectedItems.length ? (sendPage.activeTask ? I18n.t("本次任务文件 · ") : I18n.t("待发送清单 · ")) + sendPage.selectedItems.length + I18n.t(" 项") : I18n.t("尚未选择文件")); Layout.fillWidth: true }
         Repeater {
             model: sendPage.selectedItems
             RowLayout {
@@ -147,7 +157,7 @@ ColumnLayout {
                 ColumnLayout {
                     Layout.fillWidth: true
                     BodyText { text: modelData.name + (modelData.directory ? I18n.t(" · 文件夹") : " · " + modelData.bytes + I18n.t(" 字节")); Layout.fillWidth: true; elide: Text.ElideRight; wrapMode: Text.NoWrap }
-                    Hint { text: modelData.path; Layout.fillWidth: true }
+                    Hint { visible: !sendPage.android; text: modelData.path; Layout.fillWidth: true }
                 }
                 AppButton { text: I18n.t("移除"); implicitWidth: 66; onClicked: sendPage.removeItem(index) }
             }

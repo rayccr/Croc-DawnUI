@@ -181,6 +181,10 @@ SCrocConfig ConfigStore::ToCrocConfig(const QString& _strCrocPath, const QString
 
 QString ConfigStore::GetDefaultSaveDir() const  // 默认接收目录
 {
+#ifdef Q_OS_ANDROID
+    // Croc 引擎需要可随机读写的本地路径，接收后由系统文件选择器授权导出。
+    return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QStringLiteral("/received");
+#else
     const QString strSave = m_hashValues.value(QStringLiteral("save")).toString();
     if (!strSave.isEmpty() && QFileInfo(strSave).isAbsolute())
     {
@@ -192,6 +196,7 @@ QString ConfigStore::GetDefaultSaveDir() const  // 默认接收目录
         strDownload = QDir::homePath();
     }
     return QDir::cleanPath(strDownload + QStringLiteral("/Croc-DawnUI"));
+#endif
 }
 
 QString ConfigStore::GetConflictMode() const  // 同名文件策略

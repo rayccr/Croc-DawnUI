@@ -9,12 +9,12 @@ Controls.ApplicationWindow {
     id: window
     width: 1120
     height: 760
-    minimumWidth: 360
-    minimumHeight: 480
+    minimumWidth: Qt.platform.os === "android" ? 0 : 360
+    minimumHeight: Qt.platform.os === "android" ? 0 : 480
     visible: false  // C++ 根据屏幕可用区域确定尺寸后再显示，避免首次弹出超高窗口。
     title: "Croc-DawnUI"
     color: Theme.background
-    font.family: "Microsoft YaHei UI"
+    font.family: Qt.platform.os === "android" ? Qt.application.font.family : "Microsoft YaHei UI"
     font.pixelSize: 14
 
     background: Item {

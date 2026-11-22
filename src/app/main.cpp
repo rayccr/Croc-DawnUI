@@ -103,6 +103,9 @@ int main(int _nArgc, char* _ppArgv[])
     QQuickWindow* pMainWindow = qobject_cast<QQuickWindow*>(qmlEngine.rootObjects().first());
     if (nullptr != pMainWindow)
     {
+#ifdef Q_OS_ANDROID
+        pMainWindow->showMaximized();
+#else
         QScreen* pScreen = pMainWindow->screen();
         if (nullptr == pScreen) { pScreen = QGuiApplication::primaryScreen(); }
         if (nullptr != pScreen)
@@ -117,6 +120,7 @@ int main(int _nArgc, char* _ppArgv[])
                                      rectAvailable.y() + (rectAvailable.height() - pMainWindow->height()) / 2);
         }
         pMainWindow->show();
+#endif
     }
 #ifdef CROCD_ENABLE_SELFTEST
     const int nSendPageCheck = lstArguments.indexOf(QStringLiteral("--send-page-check"));

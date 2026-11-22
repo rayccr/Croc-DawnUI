@@ -45,6 +45,10 @@ QString CrocLibrary::ResolveLibraryPath() const  // 解析动态库路径
     {
         return strFromEnv;
     }
+#ifdef Q_OS_ANDROID
+    // 由 Android 动态链接器在 APK 的本机库命名空间中定位，兼容未解压的库。
+    return QStringLiteral("libcroc_engine.so");
+#else
 #ifdef Q_OS_WIN
     const QString strFileName = QStringLiteral("croc_engine.dll");
 #else
@@ -62,6 +66,7 @@ QString CrocLibrary::ResolveLibraryPath() const  // 解析动态库路径
     const QString strDevPath = QDir::cleanPath(strAppDir + QStringLiteral("/../../Croc-lib/dist/linux-x64/") + strFileName);
 #endif
     return strDevPath;
+#endif
 }
 
 bool CrocLibrary::Load()  // 加载并校验 ABI
@@ -71,13 +76,15 @@ bool CrocLibrary::Load()  // 加载并校验 ABI
         return true;
     }
     const QString strPath = ResolveLibraryPath();
+#ifndef Q_OS_ANDROID
     if (!QFileInfo::exists(strPath))
     {
         m_strLastError = QStringLiteral("找不到引擎库：") + strPath;
         return false;
     }
+#endif
     m_library.setFileName(strPath);
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_ANDROID)
     // Go c-shared 的运行时线程可活到进程退出，不能提前解除 DLL 映射。
     m_library.setLoadHints(m_library.loadHints() | QLibrary::PreventUnloadHint);
 #endif

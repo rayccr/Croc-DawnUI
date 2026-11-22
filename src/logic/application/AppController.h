@@ -66,6 +66,7 @@ class AppController : public QObject
     Q_PROPERTY(QString promptId READ GetPromptId NOTIFY promptChanged)
     Q_PROPERTY(bool hasActiveTasks READ HasActiveTasks NOTIFY taskRevisionChanged)
     Q_PROPERTY(bool engineAvailable READ EngineAvailable CONSTANT)
+    Q_PROPERTY(bool androidFileBusy READ IsAndroidFileBusy NOTIFY androidFileBusyChanged)
 
 public:
     QString GetPromptKind() const { return m_lstPrompts.isEmpty() ? QString() : m_lstPrompts.first().m_strKind; }
@@ -163,6 +164,9 @@ public:
     Q_INVOKABLE QVariantList describeSelection(const QStringList& _lstUrls) const;
     Q_INVOKABLE QString localPath(const QString& _strUrl) const;
     Q_INVOKABLE void openLocation(const QString& _strPath);
+    bool IsAndroidFileBusy() const { return m_bAndroidFileBusy; }
+    Q_INVOKABLE void importAndroidDocuments(const QStringList& _lstUris);
+    Q_INVOKABLE void exportAndroidReceive(const QString& _strPath, const QString& _strTreeUri);
 
     /**
     ****************************************************************
@@ -211,6 +215,8 @@ public:
     Q_INVOKABLE QVariantMap getTask(const QString& _strTaskId) const;
 
 signals:
+    void androidFileBusyChanged();
+    void androidDocumentsImported(const QStringList& _lstPaths);
     void engineStatusChanged();  // 引擎状态变化
     void taskRevisionChanged();  // 任务变更
     void codeReady(const QString& _strTaskId, const QString& _strCode);  // 口令就绪
@@ -262,6 +268,7 @@ private:
     QString EnqueueTask(STaskSnapshot _stTask, const QString& _strCode);
     void QueueRecordWrite();
     bool m_bDllBackend = false;
+    bool m_bAndroidFileBusy = false;
     bool m_bQueueClosing = false;
     bool m_bScheduling = false;
     bool m_bJournalWritable = false;

@@ -8,6 +8,16 @@ QtObject {
     readonly property string language: AppController.language
 
     readonly property var enMap: ({
+        '选择发送内容': 'Choose what to send',
+        '从设备中选择文件或文件夹。': 'Choose files or a folder on your device.',
+        '正在准备文件…': 'Preparing files…',
+        '无法导入文件，请检查存储空间或重新选择。': 'Could not import files. Check storage or choose them again.',
+        '文件先保存到应用内，完成后可从传输历史导出。': 'Received files are stored in the app. Export them from transfer history.',
+        '选择导出文件夹': 'Choose an export folder',
+        '导出文件': 'Export files',
+        '已导出到所选文件夹。': 'Exported to the selected folder.',
+        '导出失败，请检查存储空间或选择其他文件夹。': 'Export failed. Check storage or choose another folder.',
+        '找不到该任务的接收文件。': 'The received files for this task were not found.',
         ' · 请返回首页查看此任务': ' · Return to home to view this task',
         ' · 文件夹': ' · Folder',
         ' 项': ' items',

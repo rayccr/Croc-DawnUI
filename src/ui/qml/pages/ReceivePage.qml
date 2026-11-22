@@ -9,6 +9,7 @@ ColumnLayout {
     property string savePath: ""
     property bool narrow: false
     property bool useDefaultPath: true
+    readonly property bool android: Qt.platform.os === "android"
     readonly property string enteredCode: codeField.text.trim()
     readonly property bool canStart: enteredCode.length >= 6 && savePath !== "" && AppController.engineAvailable
     Connections {
@@ -69,6 +70,7 @@ ColumnLayout {
         }
 
         RowLayout {
+            visible: !receivePage.android
             Layout.fillWidth: true
             FieldBox {
                 Layout.fillWidth: true
@@ -84,8 +86,13 @@ ColumnLayout {
 
         AppButton {
             text: I18n.t("沿用默认目录")
-            visible: !receivePage.useDefaultPath
+            visible: !receivePage.android && !receivePage.useDefaultPath
             onClicked: { receivePage.useDefaultPath = true; receivePage.savePath = AppController.defaultSaveDir; }
+        }
+        Hint {
+            visible: receivePage.android
+            text: I18n.t("文件先保存到应用内，完成后可从传输历史导出。")
+            Layout.fillWidth: true
         }
         RowLayout {
             Layout.fillWidth: true

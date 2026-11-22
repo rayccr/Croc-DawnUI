@@ -1,5 +1,6 @@
 ﻿import QtQuick
 import QtQuick.Layouts
+import QtQuick.Dialogs
 import QtQuick.Controls.Basic as Controls
 
 // 历史页：本地记录、名称搜索、收发筛选与清空。
@@ -8,6 +9,14 @@ ColumnLayout {
     id: historyPage
     property bool narrow: false
     property string filter: "全部"
+    readonly property bool android: Qt.platform.os === "android"
+
+    FolderDialog {
+        id: exportDialog
+        property string sourcePath: ""
+        title: I18n.t("选择导出文件夹")
+        onAccepted: AppController.exportAndroidReceive(sourcePath, String(selectedFolder))
+    }
 
     Controls.Popup {
         id: clearPopup; anchors.centerIn: parent; width: Math.min(420, historyPage.width); modal: true; padding: 20
@@ -134,7 +143,14 @@ ColumnLayout {
                     Layout.fillWidth: true
                     AppButton { text: historyRow.expanded ? I18n.t("收起详情") : I18n.t("任务详情"); onClicked: historyRow.expanded = !historyRow.expanded }
                     Item { Layout.fillWidth: true }
-                    AppButton { text: I18n.t("打开位置"); enabled: historyRow.location !== "" && (historyRow.result.indexOf("接收结束") >= 0 || historyRow.result.indexOf("本端发送结束") >= 0); onClicked: AppController.openLocation(historyRow.location) }
+                    AppButton { visible: !historyPage.android; text: I18n.t("打开位置"); enabled: historyRow.location !== "" && (historyRow.result.indexOf("接收结束") >= 0 || historyRow.result.indexOf("本端发送结束") >= 0); onClicked: AppController.openLocation(historyRow.location) }
+                    AppButton {
+                        visible: historyPage.android && historyRow.direction === "接收"
+                                 && historyRow.location !== "" && historyRow.result.indexOf("接收结束") >= 0
+                        enabled: !AppController.androidFileBusy
+                        text: I18n.t("导出文件")
+                        onClicked: { exportDialog.sourcePath = historyRow.location; exportDialog.open(); }
+                    }
                 }
                 Hint {
                     visible: historyRow.expanded
