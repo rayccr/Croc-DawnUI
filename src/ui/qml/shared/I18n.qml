@@ -190,6 +190,7 @@ QtObject {
         '引擎默认': 'Engine default',
         '隐藏口令': 'Hide code',
         '应用版本': 'App version',
+        '项目源码': 'Source repositories',
         '运行环境': 'Environment',
         '再次发送': 'Send again',
         '暂无传输记录': 'No transfer records',

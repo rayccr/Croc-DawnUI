@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls.Basic as Controls
 
 // 数据与关于：品牌主卡、数据管理及运行环境，避免把只读信息排成输入表单。
 ColumnLayout {
@@ -8,9 +9,85 @@ ColumnLayout {
     signal openHistory()
     spacing: 16
 
+    component RepositoryLink: Controls.AbstractButton {
+        id: link
+
+        required property string repositoryUrl
+        required property string symbol
+        required property string tone
+        required property color accent
+        required property color surface
+
+        implicitHeight: Math.max(64, contentItem.implicitHeight + topPadding + bottomPadding)
+        leftPadding: 12
+        rightPadding: 12
+        topPadding: 10
+        bottomPadding: 10
+        hoverEnabled: true
+        focusPolicy: Qt.StrongFocus
+        Accessible.role: Accessible.Link
+        Accessible.name: link.text
+        Accessible.description: link.repositoryUrl
+        onClicked: Qt.openUrlExternally(link.repositoryUrl)
+
+        HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+        background: Rectangle {
+            radius: Theme.radiusControl
+            color: link.down ? Theme.pressed : (link.hovered || link.visualFocus ? link.surface : Theme.field)
+            border.color: link.hovered || link.visualFocus ? link.accent : Theme.line
+        }
+
+        contentItem: RowLayout {
+            spacing: 10
+
+            Rectangle {
+                Layout.preferredWidth: 36
+                Layout.preferredHeight: 36
+                radius: 8
+                color: link.surface
+
+                UiIcon {
+                    anchors.centerIn: parent
+                    width: 20
+                    height: 20
+                    symbol: link.symbol
+                    tone: link.tone
+                }
+            }
+
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.minimumWidth: 0
+                spacing: 3
+
+                BodyText {
+                    Layout.fillWidth: true
+                    text: link.text
+                    font.weight: Font.DemiBold
+                }
+
+                Hint {
+                    Layout.fillWidth: true
+                    text: link.repositoryUrl.substring("https://".length)
+                    color: link.hovered || link.visualFocus ? link.accent : Theme.muted
+                    wrapMode: Text.WrapAnywhere
+                }
+            }
+
+            UiIcon {
+                Layout.preferredWidth: 16
+                Layout.preferredHeight: 16
+                symbol: "arrow"
+                tone: link.hovered || link.visualFocus ? link.tone : "muted"
+                rotation: -45
+            }
+        }
+    }
+
     Panel {
         Layout.fillWidth: true
-        padding: 24
+        padding: about.narrow ? 18 : 24
         RowLayout {
             Layout.fillWidth: true
             spacing: 18
@@ -29,6 +106,44 @@ ColumnLayout {
         }
         Rule { }
         Hint { text: I18n.t("基于 Croc 的文件与文件夹互传。每次连接、接收确认与传输结果，都对应明确的任务。"); Layout.fillWidth: true }
+
+        Rule { }
+
+        BodyText {
+            text: I18n.t("项目源码")
+            font.weight: Font.DemiBold
+        }
+
+        GridLayout {
+            Layout.fillWidth: true
+            columns: width >= 600 ? 2 : 1
+            columnSpacing: 10
+            rowSpacing: 8
+
+            RepositoryLink {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.preferredWidth: 1
+                text: "Croc-DawnUI"
+                repositoryUrl: "https://github.com/rayccr/Croc-DawnUI"
+                symbol: "folder"
+                tone: "send"
+                accent: Theme.blue
+                surface: Theme.sendSurface
+            }
+
+            RepositoryLink {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.preferredWidth: 1
+                text: "Croc-lib"
+                repositoryUrl: "https://github.com/rayccr/Croc-lib"
+                symbol: "box"
+                tone: "receive"
+                accent: Theme.green
+                surface: Theme.receiveSurface
+            }
+        }
     }
 
     GridLayout {
