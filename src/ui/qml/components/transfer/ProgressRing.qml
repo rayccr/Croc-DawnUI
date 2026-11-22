@@ -6,6 +6,7 @@ Item {
     property real progress: -1
     property color accent: Theme.blue
     property string caption: I18n.t("传输进度")
+    readonly property real diameter: Math.min(width, height)
     implicitWidth: 104
     implicitHeight: 104
 
@@ -17,7 +18,7 @@ Item {
             ctx.reset();
             ctx.lineWidth = 5;
             ctx.lineCap = "round";
-            var r = (Math.min(width, height) - 8) / 2;
+            var r = (ring.diameter - 8) / 2;
             // 底色与 Theme.rule 一致，Canvas 需要字符串形式的颜色。
             ctx.strokeStyle = "#2a2e33";
             ctx.beginPath();
@@ -40,22 +41,27 @@ Item {
 
     Column {
         anchors.centerIn: parent
-        spacing: 4
+        spacing: 2
         BodyText {
-            width: ring.width
+            // 百分比居中收窄，为圆弧留出间距。
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: ring.diameter * 0.54
             text: ring.progress < 0 ? "—" : ring.progress.toFixed(2) + "%"
             wrapMode: Text.NoWrap
             fontSizeMode: Text.HorizontalFit
-            minimumPixelSize: 18
-            font.pixelSize: 27
+            minimumPixelSize: 10
+            font.pixelSize: Math.min(18, Math.round(ring.diameter * 0.17))
             font.weight: Font.DemiBold
             horizontalAlignment: Text.AlignHCenter
         }
         Hint {
-            width: ring.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: ring.diameter * 0.78
             text: ring.caption
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 11
+            maximumLineCount: 2
+            elide: Text.ElideRight
         }
     }
 }
