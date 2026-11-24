@@ -240,6 +240,8 @@ if (ANDROID)
             QT_ANDROID_PACKAGE_NAME "io.crocdawnui.app"
             QT_ANDROID_APP_NAME "Croc-DawnUI"
             QT_ANDROID_APP_ICON "@drawable/croc_dawn"
+            QT_ANDROID_VERSION_CODE "3"
+            QT_ANDROID_VERSION_NAME "1.0.2"
             QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/android"
             QT_ANDROID_EXTRA_LIBS "${CROCD_ANDROID_ENGINE}")
     qt_add_android_permission(Croc-DawnUI NAME android.permission.INTERNET)

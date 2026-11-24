@@ -58,10 +58,13 @@ Controls.ApplicationWindow {
         messagePopup.open();
     }
 
-    // 引擎事件通过控制器属性传来（信号在 QML 侧不可用），属性变化时再弹提示
-    onLastEventChanged: {
-        if (lastEvent !== "") {
-            notify(lastEvent);
+    // 监听控制器的事件通知，连续遇到同一个错误时也重新弹出提示。
+    Connections {
+        target: AppController
+        function onLastEventTextChanged() {
+            if (AppController.lastEventText !== "") {
+                window.notify(AppController.lastEventText);
+            }
         }
     }
 

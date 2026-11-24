@@ -165,6 +165,7 @@ public:
     Q_INVOKABLE QString localPath(const QString& _strUrl) const;
     Q_INVOKABLE void openLocation(const QString& _strPath);
     bool IsAndroidFileBusy() const { return m_bAndroidFileBusy; }
+    Q_INVOKABLE void pickAndroidFiles();
     Q_INVOKABLE void importAndroidDocuments(const QStringList& _lstUris);
     Q_INVOKABLE void exportAndroidReceive(const QString& _strPath, const QString& _strTreeUri);
 

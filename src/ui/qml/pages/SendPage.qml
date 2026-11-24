@@ -127,7 +127,13 @@ ColumnLayout {
                     AppButton {
                         text: I18n.t("选择文件")
                         enabled: !AppController.androidFileBusy
-                        onClicked: fileDialog.open()
+                        onClicked: {
+                            if (sendPage.android) {
+                                AppController.pickAndroidFiles();
+                            } else {
+                                fileDialog.open();
+                            }
+                        }
                     }
                     AppButton {
                         text: I18n.t("选择文件夹")

@@ -34,6 +34,7 @@
 #ifdef Q_OS_ANDROID
 #include "AndroidFiles.h"
 #include <QFutureWatcher>
+#include <QPointer>
 #include <QtConcurrentRun>
 #endif
 
@@ -653,21 +654,74 @@ void AppController::openLocation(const QString& _strPath)
     if (!QDesktopServices::openUrl(QUrl::fromLocalFile(strFolder))) { ShowError(QStringLiteral("无法打开文件管理器，请手动查看此目录。")); }
 }
 
+void AppController::pickAndroidFiles()
+{
+#ifdef Q_OS_ANDROID
+    if (m_bAndroidFileBusy) { return; }
+    const QPointer<AppController> pController(this);
+    const bool bOpened = AndroidFiles::PickFiles(
+        [pController](AndroidFiles::EPickerStatus _enStatus, const QStringList& _lstUris)
+    {
+        if (!pController) { return; }
+        pController->m_bAndroidFileBusy = false;
+        emit pController->androidFileBusyChanged();
+        switch (_enStatus)
+        {
+        case AndroidFiles::PICK_CANCELLED:
+            break;
+        case AndroidFiles::PICK_SELECTED:
+            pController->importAndroidDocuments(_lstUris);
+            break;
+        case AndroidFiles::PICK_EMPTY:
+            pController->ShowError(QStringLiteral("文件管理器没有返回文件地址。请从系统选择器的「下载」或「内部存储」选取。"));
+            break;
+        case AndroidFiles::PICK_UNAVAILABLE:
+            pController->ShowError(QStringLiteral("无法打开 Android 系统文件选择器。"));
+            break;
+        }
+    });
+    if (!bOpened)
+    {
+        ShowError(QStringLiteral("无法打开 Android 系统文件选择器。"));
+        return;
+    }
+    m_bAndroidFileBusy = true;
+    emit androidFileBusyChanged();
+#endif
+}
+
 void AppController::importAndroidDocuments(const QStringList& _lstUris)
 {
 #ifdef Q_OS_ANDROID
-    if (_lstUris.isEmpty() || m_bAndroidFileBusy) { return; }
+    if (m_bAndroidFileBusy) { return; }
+    if (_lstUris.isEmpty())
+    {
+        ShowError(QStringLiteral("系统选择器没有返回文件，请重新选择。"));
+        return;
+    }
     m_bAndroidFileBusy = true;
     emit androidFileBusyChanged();
-    auto* pWatcher = new QFutureWatcher<QStringList>(this);
-    connect(pWatcher, &QFutureWatcher<QStringList>::finished, this, [this, pWatcher]()
+    auto* pWatcher = new QFutureWatcher<AndroidFiles::SImportResult>(this);
+    connect(pWatcher, &QFutureWatcher<AndroidFiles::SImportResult>::finished, this,
+        [this, pWatcher, nSelected = _lstUris.size()]()
     {
-        const QStringList lstPaths = pWatcher->result();
+        const auto stResult = pWatcher->result();
         pWatcher->deleteLater();
         m_bAndroidFileBusy = false;
         emit androidFileBusyChanged();
-        if (lstPaths.isEmpty()) { ShowError(QStringLiteral("无法导入文件，请检查存储空间或重新选择。")); }
-        else { emit androidDocumentsImported(lstPaths); }
+        if (!stResult.lstPaths.isEmpty()) { emit androidDocumentsImported(stResult.lstPaths); }
+        if (stResult.bReadDenied)
+        {
+            ShowError(QStringLiteral("系统拒绝读取所选文件。请重新选择，或先将文件保存到下载目录再选。"));
+        }
+        else if (stResult.lstPaths.isEmpty())
+        {
+            ShowError(QStringLiteral("无法导入文件，请检查存储空间或重新选择。"));
+        }
+        else if (stResult.lstPaths.size() < nSelected)
+        {
+            ShowError(QStringLiteral("部分文件无法读取，已导入可读取的文件。"));
+        }
     });
     pWatcher->setFuture(QtConcurrent::run(AndroidFiles::Import, _lstUris));
 #else
