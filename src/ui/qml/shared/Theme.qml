@@ -4,6 +4,7 @@ import QtQuick
 
 // 主题常量：颜色与尺寸的唯一来源，页面和组件都从这里取值，避免各处散落色值。
 QtObject {
+    readonly property bool compactDesktop: Qt.platform.os !== "android" && Qt.platform.os !== "ios"
     readonly property color background: "#0d1014"
     readonly property color panel: "#15191e"
     readonly property color field: "#111419"
@@ -21,7 +22,7 @@ QtObject {
     readonly property color sendSurface: "#141e2a"
     readonly property color receiveSurface: "#14231f"
     readonly property color historySurface: "#211b2c"
-    readonly property int radiusPanel: 18
+    readonly property int radiusPanel: compactDesktop ? 12 : 18
     readonly property int radiusControl: 10
 
     // 玻璃材质参数与唯一环境纹理；无持续动画，静止时无需反复重绘。

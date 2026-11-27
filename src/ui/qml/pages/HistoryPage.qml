@@ -31,7 +31,7 @@ ColumnLayout {
             }
         }
     }
-    spacing: 20
+    spacing: Theme.compactDesktop ? 10 : 20
 
     Panel {
         Layout.fillWidth: true
@@ -68,7 +68,7 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.preferredHeight: Math.min(380, Math.max(60, contentHeight))
             clip: true
-            spacing: 8
+            spacing: Theme.compactDesktop ? 6 : 8
             model: AppController.history
             boundsBehavior: Flickable.StopAtBounds
 
@@ -91,11 +91,11 @@ ColumnLayout {
 
                 RowLayout {
                     Layout.fillWidth: true
-                    spacing: 14
+                    spacing: Theme.compactDesktop ? 8 : 14
 
                     Rectangle {
-                        width: 42
-                        height: 42
+                        width: Theme.compactDesktop ? 32 : 42
+                        height: width
                         radius: Theme.radiusControl
                         color: historyRow.direction === "发送" ? Theme.sendSurface : Theme.receiveSurface
                         UiIcon {

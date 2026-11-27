@@ -68,7 +68,7 @@ ColumnLayout {
     signal taskStarted(string taskId)
     signal notifyRequested(string text)
 
-    spacing: 20
+    spacing: Theme.compactDesktop ? 10 : 20
 
     FileDialog {
         id: fileDialog
@@ -94,7 +94,7 @@ ColumnLayout {
 
         GlassSurface {
             Layout.fillWidth: true
-            implicitHeight: 218
+            implicitHeight: Theme.compactDesktop ? 104 : 218
             radius: 12
             glassTint: Theme.field
             accent: Theme.blue
@@ -104,21 +104,22 @@ ColumnLayout {
             ColumnLayout {
                 anchors.centerIn: parent
                 width: parent.width - 32
-                spacing: 12
+                spacing: Theme.compactDesktop ? 7 : 12
                 UiIcon {
                     symbol: "up"
                     tone: "send"
-                    Layout.preferredWidth: 32
-                    Layout.preferredHeight: 32
+                    Layout.preferredWidth: Theme.compactDesktop ? 20 : 32
+                    Layout.preferredHeight: Layout.preferredWidth
                     Layout.alignment: Qt.AlignHCenter
                 }
                 BodyText {
                     text: I18n.t(sendPage.android ? "选择发送内容" : "将文件拖到这里")
-                    font.pixelSize: 18
+                    font.pixelSize: Theme.compactDesktop ? 14 : 18
                     font.weight: Font.DemiBold
                     Layout.alignment: Qt.AlignHCenter
                 }
                 Hint {
+                    visible: !Theme.compactDesktop
                     text: I18n.t(sendPage.android ? "从设备中选择文件或文件夹。" : "或从设备中选择文件 / 文件夹")
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -153,7 +154,11 @@ ColumnLayout {
             }
         }
 
-        Hint { text: AppController.androidFileBusy ? I18n.t("正在准备文件…") : (sendPage.selectedItems.length ? (sendPage.activeTask ? I18n.t("本次任务文件 · ") : I18n.t("待发送清单 · ")) + sendPage.selectedItems.length + I18n.t(" 项") : I18n.t("尚未选择文件")); Layout.fillWidth: true }
+        Hint {
+            visible: !Theme.compactDesktop || AppController.androidFileBusy || sendPage.selectionCount > 0
+            text: AppController.androidFileBusy ? I18n.t("正在准备文件…") : (sendPage.selectedItems.length ? (sendPage.activeTask ? I18n.t("本次任务文件 · ") : I18n.t("待发送清单 · ")) + sendPage.selectedItems.length + I18n.t(" 项") : I18n.t("尚未选择文件"))
+            Layout.fillWidth: true
+        }
         Repeater {
             model: sendPage.selectedItems
             RowLayout {
@@ -175,11 +180,14 @@ ColumnLayout {
         Hint { visible: sendPage.customCode; text: I18n.t("使用英文字母、数字和短横线。请使用难猜的口令，并确认对方曲线和中继配置兼容。"); Layout.fillWidth: true }
 
         BodyText {
+            visible: codeControls.visible
             text: I18n.t("分享口令")
             font.pixelSize: 13
         }
 
         GridLayout {
+            id: codeControls
+            visible: !Theme.compactDesktop || sendPage.activeTask !== null
             Layout.fillWidth: true
             columns: sendPage.narrow ? 2 : 3
             rowSpacing: 8
@@ -221,11 +229,13 @@ ColumnLayout {
                 enabled: sendPage.selectedItems.length > 0 && AppController.engineAvailable
                          && !(sendPage.activeTask && !sendPage.activeTask.terminal)
                          && (!sendPage.customCode || customCodeField.text.length >= 6)
+                toolTipText: Theme.compactDesktop && sendPage.activeTask === null ? I18n.t("连接就绪后可分享口令") : ""
                 onClicked: {
                     sendPage.startSelectedTask();
                 }
             }
             Hint {
+                visible: !Theme.compactDesktop || sendPage.activeTask !== null || sendPage.startError !== ""
                 text: {
                     if (sendPage.startError !== "") { return sendPage.startError; }
                     if (!sendPage.activeTask) {

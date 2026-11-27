@@ -115,7 +115,9 @@ int main(int _nArgc, char* _ppArgv[])
             const int nUsableHeight = qMax(1, rectAvailable.height() - 64);
             pMainWindow->setMinimumWidth(qMin(360, nUsableWidth));
             pMainWindow->setMinimumHeight(qMin(480, nUsableHeight));
-            pMainWindow->resize(qMin(1120, nUsableWidth), qMin(760, nUsableHeight));
+            // pMainWindow->resize(qMin(1120, nUsableWidth), qMin(760, nUsableHeight));
+            pMainWindow->resize(qMin(pMainWindow->width(), nUsableWidth),
+                                qMin(pMainWindow->height(), nUsableHeight));
             pMainWindow->setPosition(rectAvailable.x() + (rectAvailable.width() - pMainWindow->width()) / 2,
                                      rectAvailable.y() + (rectAvailable.height() - pMainWindow->height()) / 2);
         }

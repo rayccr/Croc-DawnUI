@@ -9,11 +9,15 @@ Controls.Button {
     property string tone: "muted"
     property color tint: "transparent"
     property color labelColor: Theme.text
-    implicitHeight: 44
-    implicitWidth: Math.max(92, labelRow.implicitWidth + 28)
-    padding: 12
+    property string toolTipText: ""
+    implicitHeight: Theme.compactDesktop ? 36 : 44
+    implicitWidth: Math.max(Theme.compactDesktop ? 76 : 92, labelRow.implicitWidth + (Theme.compactDesktop ? 20 : 28))
+    padding: Theme.compactDesktop ? 8 : 12
     hoverEnabled: true
     opacity: enabled ? 1 : 0.45
+    Controls.ToolTip.visible: toolTipText !== "" && (hovered || visualFocus)
+    Controls.ToolTip.text: toolTipText
+    Controls.ToolTip.delay: 400
 
     background: Rectangle {
         radius: Theme.radiusControl
@@ -23,15 +27,17 @@ Controls.Button {
 
     contentItem: RowLayout {
         id: labelRow
-        spacing: 8
+        spacing: Theme.compactDesktop ? 6 : 8
         UiIcon {
             visible: button.symbol !== ""
             symbol: button.symbol
             tone: button.tone
             Layout.preferredWidth: 18
             Layout.preferredHeight: 18
+            Layout.alignment: button.text === "" ? Qt.AlignHCenter : Qt.AlignVCenter
         }
         BodyText {
+            visible: button.text !== "" || !Theme.compactDesktop
             text: button.text
             color: button.labelColor
             Layout.fillWidth: true

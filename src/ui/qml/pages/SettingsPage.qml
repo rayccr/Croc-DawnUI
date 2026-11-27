@@ -46,7 +46,7 @@ ColumnLayout {
             }
         }
     }
-    spacing: 20
+    spacing: Theme.compactDesktop ? 10 : 20
 
     GridLayout {
         Layout.fillWidth: true
@@ -78,7 +78,7 @@ ColumnLayout {
                 required property var modelData
                 visible: Qt.platform.os !== "android" || modelData.key !== "save"
                 Layout.fillWidth: true
-                spacing: 8
+                spacing: Theme.compactDesktop ? 5 : 8
 
                 BodyText {
                     text: I18n.t(modelData.label)

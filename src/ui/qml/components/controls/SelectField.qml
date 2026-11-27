@@ -8,10 +8,10 @@ import QtQuick.Layouts
 Controls.ComboBox {
     id: select
     property var options: []
-    implicitHeight: 44
+    implicitHeight: Theme.compactDesktop ? 36 : 44
     implicitWidth: 220
     model: options
-    padding: 12
+    padding: Theme.compactDesktop ? 8 : 12
     spacing: 8
     hoverEnabled: true
 
@@ -47,7 +47,7 @@ Controls.ComboBox {
         required property int index
         required property var modelData
         width: ListView.view ? ListView.view.width : select.width
-        height: 38
+        height: Theme.compactDesktop ? 34 : 38
         hoverEnabled: true
         highlighted: select.highlightedIndex === index
 

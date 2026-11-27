@@ -7,8 +7,8 @@ import QtQuick.Layouts
 // 公共外观在 Theme 与各组件文件中，数据只来自 AppController 的真实任务。
 Controls.ApplicationWindow {
     id: window
-    width: 1120
-    height: 760
+    width: Theme.compactDesktop ? 720 : 1120
+    height: Theme.compactDesktop ? 480 : 760
     minimumWidth: Qt.platform.os === "android" ? 0 : 360
     minimumHeight: Qt.platform.os === "android" ? 0 : 480
     visible: false  // C++ 根据屏幕可用区域确定尺寸后再显示，避免首次弹出超高窗口。
@@ -47,6 +47,7 @@ Controls.ApplicationWindow {
     property string lastEvent: AppController.lastEventText
     readonly property bool narrow: width < 640
     readonly property bool isSubPage: currentPage === "send" || currentPage === "receive" || currentPage === "settings"
+    readonly property bool desktopHomeVisible: Theme.compactDesktop && currentPage === "home"
 
     function navigate(page) {
         currentPage = page;
@@ -69,7 +70,7 @@ Controls.ApplicationWindow {
     }
 
     header: Rectangle {
-        height: 72
+        height: Theme.compactDesktop ? 48 : 72
         color: "#c00b0e13"
 
         Rectangle {
@@ -80,33 +81,40 @@ Controls.ApplicationWindow {
         }
 
         RowLayout {
-            width: Math.min(parent.width - 32, 1040)
+            width: Math.min(parent.width - (Theme.compactDesktop ? 20 : 32), 1040)
             height: parent.height
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 10
 
             Controls.AbstractButton {
+                id: brandButton
                 implicitWidth: brandRow.implicitWidth
-                implicitHeight: 44
+                implicitHeight: Theme.compactDesktop ? 36 : 44
+                Accessible.name: I18n.t("返回首页")
+                background: Rectangle {
+                    color: "transparent"
+                    radius: Theme.radiusControl
+                    border.color: brandButton.visualFocus ? Theme.blue : "transparent"
+                }
                 onClicked: window.navigate("home")
                 contentItem: RowLayout {
                     id: brandRow
-                    spacing: 10
+                    spacing: Theme.compactDesktop ? 8 : 10
                     Rectangle {
-                        width: 40
-                        height: 40
-                        radius: 12
+                        width: Theme.compactDesktop ? 30 : 40
+                        height: width
+                        radius: Theme.compactDesktop ? 8 : 12
                         color: Theme.sendSurface
                         UiIcon {
                             anchors.centerIn: parent
                             source: "qrc:/ui/icons/dawn-logo.svg"
-                            width: 36
-                            height: 36
+                            width: Theme.compactDesktop ? 26 : 36
+                            height: width
                         }
                     }
                     BodyText {
                         text: "Croc-DawnUI"
-                        font.pixelSize: 18
+                        font.pixelSize: Theme.compactDesktop ? 15 : 18
                         font.weight: Font.DemiBold
                     }
                 }
@@ -116,7 +124,7 @@ Controls.ApplicationWindow {
 
             Hint {
                 id: engineStatusLabel
-                visible: window.width > 700
+                visible: !Theme.compactDesktop && window.width > 700
                 text: AppController.engineStatus
                 wrapMode: Text.NoWrap
                 maximumLineCount: 1
@@ -133,16 +141,48 @@ Controls.ApplicationWindow {
             }
 
             AppButton {
-                text: window.narrow ? "" : I18n.t("设置")
-                implicitWidth: window.narrow ? 44 : 92
+                visible: Theme.compactDesktop
+                implicitWidth: 32
+                toolTipText: AppController.engineStatus
+                Accessible.name: AppController.engineStatus
+                onClicked: window.notify(AppController.engineStatus)
+                contentItem: Item {
+                    Rectangle {
+                        anchors.centerIn: parent
+                        width: 8
+                        height: width
+                        radius: width / 2
+                        color: AppController.engineAvailable ? Theme.green : "#ff9c8a"
+                    }
+                }
+            }
+
+            AppButton {
+                text: Theme.compactDesktop || window.narrow ? "" : I18n.t("设置")
+                implicitWidth: Theme.compactDesktop ? 36 : (window.narrow ? 44 : 92)
+                toolTipText: Theme.compactDesktop ? I18n.t("设置") : ""
+                Accessible.name: I18n.t("设置")
                 symbol: "settings"
                 onClicked: window.navigate("settings")
             }
         }
     }
 
+    // 桌面首页直接使用窗口可见区域，其他页面仍由原滚动容器承载。
+    ColumnLayout {
+        id: desktopHomeLayout
+        visible: window.desktopHomeVisible
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: 10
+        anchors.bottomMargin: 10
+        width: Math.max(0, Math.min(parent.width - 20, 1040))
+    }
+
     Controls.ScrollView {
         id: contentScroll
+        visible: !window.desktopHomeVisible
         anchors.fill: parent
         clip: true
         contentWidth: availableWidth
@@ -154,25 +194,33 @@ Controls.ApplicationWindow {
 
         ColumnLayout {
             id: pageBody
-            width: Math.min(contentScroll.availableWidth - 32, window.isSubPage ? 760 : 1040)
+            width: Math.min(contentScroll.availableWidth - (Theme.compactDesktop ? 20 : 32), window.isSubPage ? 760 : 1040)
             x: (contentScroll.availableWidth - width) / 2
-            spacing: 20
+            spacing: Theme.compactDesktop ? 8 : 20
             onHeightChanged: Qt.callLater(function() { ++Theme.glassViewportRevision; })
 
-            Item { Layout.preferredHeight: 8 }
+            Item { Layout.preferredHeight: Theme.compactDesktop ? 2 : 8 }
 
-            AppButton {
-                visible: window.currentPage !== "home"
-                text: I18n.t("返回首页")
-                symbol: "back"
-                onClicked: window.navigate("home")
-            }
-
-            ColumnLayout {
+            GridLayout {
+                visible: !Theme.compactDesktop || window.currentPage !== "home"
                 Layout.fillWidth: true
-                spacing: 10
+                columns: Theme.compactDesktop ? 2 : 1
+                columnSpacing: 8
+                rowSpacing: 10
+
+                AppButton {
+                    visible: window.currentPage !== "home"
+                    text: Theme.compactDesktop ? "" : I18n.t("返回首页")
+                    implicitWidth: Theme.compactDesktop ? 36 : Math.max(92, contentItem.implicitWidth + 28)
+                    Layout.bottomMargin: Theme.compactDesktop ? 0 : 10
+                    toolTipText: Theme.compactDesktop ? I18n.t("返回首页") : ""
+                    Accessible.name: I18n.t("返回首页")
+                    symbol: "back"
+                    onClicked: window.navigate("home")
+                }
 
                 Hint {
+                    visible: !Theme.compactDesktop
                     text: ({
                         home: "CROC-DAWNUI / FILE TRANSFER",
                         send: "SEND / 01",
@@ -191,11 +239,13 @@ Controls.ApplicationWindow {
                         history: I18n.t("传输历史"),
                         settings: I18n.t("设置")
                     })[window.currentPage]
-                    font.pixelSize: window.narrow ? 24 : 28
+                    font.pixelSize: Theme.compactDesktop ? 19 : (window.narrow ? 24 : 28)
                     font.weight: Font.Bold
                     Layout.fillWidth: true
                 }
                 Hint {
+                    visible: !Theme.compactDesktop || window.currentPage === "settings"
+                    Layout.columnSpan: Theme.compactDesktop ? 2 : 1
                     text: ({
                         home: I18n.t("发送、接收，一切恰到好处。"),
                         send: I18n.t("选好文件，再把口令交给对方。"),
@@ -210,9 +260,12 @@ Controls.ApplicationWindow {
 
             HomePage {
                 id: homePage
+                parent: Theme.compactDesktop ? desktopHomeLayout : pageBody
                 visible: window.currentPage === "home"
                 Layout.fillWidth: true
+                Layout.fillHeight: Theme.compactDesktop
                 narrow: window.narrow
+                viewportHeight: Theme.compactDesktop ? desktopHomeLayout.height : 0
                 onNavigateTo: function(page) { window.navigate(page) }
                 onNotifyRequested: function(text) { window.notify(text) }
             }
@@ -252,6 +305,7 @@ Controls.ApplicationWindow {
             }
 
             RowLayout {
+                visible: !Theme.compactDesktop
                 Layout.fillWidth: true
                 Hint {
                     text: I18n.t("Croc-DawnUI 安全端到端文件传输")
@@ -260,7 +314,7 @@ Controls.ApplicationWindow {
                 }
             }
 
-            Item { Layout.preferredHeight: 12 }
+            Item { Layout.preferredHeight: Theme.compactDesktop ? 2 : 12 }
         }
     }
 

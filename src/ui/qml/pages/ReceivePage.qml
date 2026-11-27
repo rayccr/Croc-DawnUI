@@ -1,5 +1,6 @@
 ﻿import QtQuick
 import QtQuick.Dialogs
+import QtQuick.Controls.Basic as Controls
 import QtQuick.Layouts
 
 // 接收页：输入口令、选择保存位置、启动接收。
@@ -36,7 +37,7 @@ ColumnLayout {
         }
     }
 
-    spacing: 20
+    spacing: Theme.compactDesktop ? 10 : 20
 
     FolderDialog {
         id: saveDirDialog
@@ -56,10 +57,16 @@ ColumnLayout {
             id: codeField
             Layout.fillWidth: true
             placeholderText: I18n.t("例如 7-word-phrase")
+            Accessible.name: I18n.t("接收口令")
+            Accessible.description: I18n.t("请使用发送方分享的当前口令。")
+            Controls.ToolTip.visible: Theme.compactDesktop && hovered && !activeFocus && text === ""
+            Controls.ToolTip.text: Accessible.description
+            Controls.ToolTip.delay: 400
             onAccepted: receivePage.startReceive()
         }
 
         Hint {
+            visible: !Theme.compactDesktop
             text: I18n.t("请使用发送方分享的当前口令。")
             Layout.fillWidth: true
         }
@@ -101,9 +108,12 @@ ColumnLayout {
                 tint: Theme.green
                 labelColor: Theme.onAccent
                 enabled: receivePage.canStart
+                toolTipText: Theme.compactDesktop ? I18n.t("点击开始接收，或按回车。") : ""
                 onClicked: receivePage.startReceive()
             }
             Hint {
+                visible: !Theme.compactDesktop || !AppController.engineAvailable || receivePage.savePath === ""
+                         || (receivePage.enteredCode.length > 0 && receivePage.enteredCode.length < 6)
                 text: {
                     if (!AppController.engineAvailable) {
                         return I18n.t("接收引擎不可用，请检查安装后重启。");

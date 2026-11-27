@@ -6,7 +6,7 @@ Controls.TextField {
     color: Theme.text
     placeholderTextColor: Theme.placeholder
     font.pixelSize: 14
-    implicitHeight: 46
+    implicitHeight: Theme.compactDesktop ? 38 : 46
     leftPadding: 12
     rightPadding: 12
     selectByMouse: true
