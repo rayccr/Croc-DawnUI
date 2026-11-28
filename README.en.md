@@ -4,7 +4,7 @@
 
 Croc-DawnUI is a desktop app for sending files and folders between two devices. Drop files into the window and share the transfer code. The recipient enters the code and chooses where to save the files. [Croc-lib](https://github.com/rayccr/Croc-lib) provides end-to-end encryption.
 
-![Send and receive queues on the Croc-DawnUI home screen](docs/screenshots/home.png)
+![Send and receive queues on the Croc-DawnUI home screen](docs/screenshots/home-en.png)
 
 ## Send your first file
 
